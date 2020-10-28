@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
+
+//Person controller
+Route::resource('people', 'PersonController');
+Route::resource('family', 'FamilyController');

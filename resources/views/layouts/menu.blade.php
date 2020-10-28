@@ -32,13 +32,13 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/layout/top-nav.html" class="nav-link">
+          <a href="{{route('people.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
               <p>View Persons</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/layout/top-nav.html" class="nav-link">
+            <a href="{{route('family.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
               <p>View Families</p>
             </a>

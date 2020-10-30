@@ -13,11 +13,11 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="" class="nav-link">
+        <a href="/calender" class="nav-link">
           <i class="nav-icon far fa-calendar-alt"></i>
           <p>
             Calendar
-            <span class="badge badge-info right">2</span>
+            {{-- <span class="badge badge-info right">2</span> --}}
           </p>
         </a>
       </li>
@@ -81,15 +81,21 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="" class="nav-link">
+          <a href="{{route('event-types.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>ChartJS</p>
+              <p>Event Types</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('events.index')}}" class="nav-link">
+              <i class="fas fa-angle-double-right"></i>
+              <p>Church Events</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Inline</p>
+              <p>Events Attendance</p>
             </a>
           </li>
         </ul>

@@ -24,6 +24,12 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 //Person controller
 Route::resource('people', 'PersonController');
 Route::resource('family', 'FamilyController');
+
 Route::resource('groups', 'GroupController');
 Route::resource('group-types', 'GroupTypeController');
 
+Route::view('/calender', 'calender.index');
+
+//envets
+Route::resource('event-types', 'EventTypeController');
+Route::resource('events', 'EventController');

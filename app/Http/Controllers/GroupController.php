@@ -56,9 +56,6 @@ class GroupController extends Controller
     public function show(Group $group)
     {
      
-    //    foreach ($group->members as $g) {
-    //        dd($g->pivot->position_id);
-    //    }
         $position = GroupPosition::all();
         return view('group.show',compact("position","group"));
     }

@@ -31,7 +31,6 @@ class PersonController extends Controller
    
     public function store(StorePersonRequest $request)
     {
-
         $person = new Person;
         $person->fill($request->all());
         $person->dob = toDbDateFormat($request->dob);
@@ -52,7 +51,9 @@ class PersonController extends Controller
  
     public function show(Person $person)
     {
-        //
+      
+        $members = Person::where('family_id', $person->family_id)->where('family_id','>','0')->get();
+        return view('people.show',compact("person","members"));
     }
 
    

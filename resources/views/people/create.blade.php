@@ -129,10 +129,10 @@
                 </div>
                 <label class="col-sm-2 col-form-label">Family Role</label>
                 <div class="col-sm-4">
-                  <select class="form-control select2" id="family_role_id" name ="family_role_id" required>
+                  <select class="form-control select2" id="person_role_id" name ="person_role_id" required>
                       <option value="">--Select Family Role--</option>
                       @foreach($role as $r)
-                        <option value="{{ $r->id }}" {{ (old('family_role_id') == $r->id ? "selected":"") }}>{{ $r->name }}</option>
+                        <option value="{{ $r->id }}" {{ (old('person_role_id') == $r->id ? "selected":"") }}>{{ $r->name }}</option>
                       @endforeach
                   </select>
                 </div>

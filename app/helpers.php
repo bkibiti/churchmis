@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+use App\PersonRole;
+use App\GroupPosition;
 
 function toDbDateFormat($val)
 {   
@@ -14,3 +16,16 @@ function toDbDateFormat($val)
 
     return $value;
 }
+
+function getPersonRole($role_id)
+{   
+    $role = PersonRole::find($role_id);
+    return $role->name;
+}
+
+function getPosition($id)
+{   
+    $position = GroupPosition::find($id);
+    return $position->name;
+}
+

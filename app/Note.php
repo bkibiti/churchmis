@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FamilyMember extends Model
+class Note extends Model
 {
-    Protected $table = 'family_members';
     public $timestamps = false;
 }

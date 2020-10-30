@@ -24,7 +24,7 @@
     <div class="col-md-12">
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">New Family</h3>
+          <h3 class="card-title">Family Info</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -85,25 +85,29 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Latitude</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="latitude" id="latitude">
+                  <input type="text" class="form-control" value="{{old('latitude')}}" name="latitude" id="latitude">
                 </div>
                 <label class="col-sm-2 col-form-label">Longitude</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="longitude" id="longitude">
+                  <input type="text" class="form-control" value="{{old('longitude')}}" name="longitude" id="longitude">
                 </div>  
             </div>
          
-      
+      <hr>
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-sm-6">
                     <h5 class="mb-2">Family Members</h5>
                 </div>
-                <div class="col-sm-2">
-                  <button type="button"
-                      class="btn btn-sm btn-warning float-right selectProducts"
-                      data-toggle="modal" data-target="#addMember">Add
-                  </button>
-                </div>  
+                <label class="col-sm-2 col-form-label">Add Member <font color="red">*</font></label>
+                <div class="col-sm-4">
+                  <select class="form-control select2" id="member_id" name ="member_id" required>
+                      <option value="">--Select Member--</option>
+                      @foreach($people as $p)
+                        <option value="{{ $p->id }}"}}>{{ $p->first_name .' ' . $p->last_name .'; from '. $p->address  }}</option>
+                      @endforeach
+                  </select>
+                </div>
+               
             </div>
             <div class="form-group row">
                 <div class="col-sm-12">
@@ -136,8 +140,6 @@
 </div><!-- /.container-fluid -->
 @endsection
 
-@include('family.add_member')
-
 @push("page_scripts")
 
 @include('partials.notification')
@@ -155,16 +157,6 @@
         
     });
 
-
-    $('#mydatatable').DataTable({
-      "paging": false,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": false,
-      "autoWidth": false,
-      "responsive": true,
-    });
 
     var members_table = $('#members').DataTable({
         searching: false,
@@ -218,6 +210,31 @@
             $('#addMember').modal('hide');
                         
         });
+
+        $('#member_id').on('select2:selecting', function(e) {
+         
+            var data = []; //hold selected member values
+            var member_id = e.params.args.data.id;
+            var people = @json($people);
+            var name = '';
+            $.each(people, function(index, value) { 
+              if(value.id == member_id){
+                data.push(name.concat(value.first_name,' ',value.middle_name,' ', value.last_name));
+                data.push(value.gender);
+                data.push(value.address);
+                data.push('role'); 
+                data.push('classy');
+                member_ids.push(value.id);
+              }
+            });
+                   
+            members_list.push(data);
+            members_table.clear();
+            members_table.rows.add(members_list).draw();
+            $('#member_ids').val(JSON.stringify(member_ids)); 
+  
+        });
+
         $('#members tbody').on('click', '#delete_btn', function () {
             var index = members_table.row($(this).parents('tr')).index();
             members_list.splice(index, 1);

@@ -8,7 +8,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Families</h1>
+        <h1 class="m-0 text-dark">Family List</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -69,11 +69,7 @@
                       </span>
                   </a>
                 
-                  <span class="badge badge-danger">
-                    <i class="fas fa-trash"></i>
-                  </span>
-
-                </td>
+                 </td>
               </tr>
               @endforeach
                

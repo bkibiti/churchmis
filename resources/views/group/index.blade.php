@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">People List</h1>
+        <h1 class="m-0 text-dark">Group List</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">People</li>
+          <li class="breadcrumb-item active">Group</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -22,23 +22,14 @@
 
 @section('content')
 <div class="container-fluid">
- <div class="row">
-  <div class="col-md-12">
-    <div class="card card-outline card-info">
-      <div class="card-body">
-          searc
-      </div>
-    </div>
-    </div>
- </div>
 
   <div class="row">
     <div class="col-md-12">
       <div class="card card-outline card-warning">
         <div class="card-header">
-          <a href="{{route('people.create')}}">
+          <a href="{{route('groups.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Person
+                  Add Group
               </button>
           </a>
         </div>
@@ -47,36 +38,31 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Address</th>
-                    <th>Mobile</th>
-                    <th>Region</th>
-                    <th>District</th>
+                    <th>Group Name</th>
+                    <th>Group Type</th>
+                    <th>Description</th>
+                    <th>Members</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-              @foreach ($people as $p)
+              @foreach ($group as $g)
               <tr>
-                <td>{{$p->first_name .' '.$p->middle_name . ' ' . $p->last_name}}</td>
-                <td>{{$p->gender}}</td>
-                <td>{{$p->address}}</td>
-                <td>{{$p->mobile_phone}}</td>
-                <td>{{$p->region}}</td>
-                <td>{{$p->district}}</td>
+                <td>{{$g->name}}</td>
+                <td>{{$g->type->name}}</td>
+                <td>{{$g->description}}</td>
+                <td>{{$g->countMembers()}}</td>
                 <td>
-                  <a href="{{ route('people.show', $p->id) }}">
+                  <a href="{{ route('groups.show', $g->id) }}">
                       <span class="badge badge-success">
                         <i class="fas fa-eye"></i>
                       </span>
                   </a>
-                  <a href="{{ route('people.edit', $p->id) }}">
+                  <a href="{{ route('groups.edit', $g->id) }}">
                       <span class="badge badge-primary">
                         <i class="fas fa-edit "></i>
                       </span>
                   </a>
-                
                   <span class="badge badge-danger">
                     <i class="fas fa-trash"></i>
                   </span>

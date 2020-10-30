@@ -5,7 +5,7 @@
            with font-awesome or any other icon font library -->
   
       <li class="nav-item">
-        <a href="pages/calendar.html" class="nav-link">
+        <a href="{{route('home')}}" class="nav-link">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>
             Dashboard
@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="pages/calendar.html" class="nav-link">
+        <a href="" class="nav-link">
           <i class="nav-icon far fa-calendar-alt"></i>
           <p>
             Calendar
@@ -58,7 +58,7 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('groups.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
               <p>View Groups</p>
             </a>

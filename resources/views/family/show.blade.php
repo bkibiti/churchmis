@@ -34,7 +34,7 @@
             <h6><i class="fas fa-phone-alt"></i> {{$family->mobile_phone}}</h6>
             <h6><i class="fas fa-mobile-alt"></i> {{$family->alt_mobile}}</h6>
             <h6><i class="fas fa-envelope"></i> {{$family->email}}</h6>
-            <h6><i class="fas fa-calendar-day"></i> Wedding Date: {{$family->wedding_date}}</h6>
+            <h6><i class="fas fa-calendar-day"></i> Wedding Date: {{myDateFormat($family->wedding_date)}}</h6>
             <h6><i class="fas fa-map-marker-alt"></i> {{$family->address}}</h6>
         </div>
         <!-- /.card-body -->
@@ -103,9 +103,9 @@
                             @endif </p>
                           </h6>
                           <h6><i class="fas fa-phone-alt"></i> {{$m->mobile_phone}}</h6>
-                          {{-- <h6><i class="fas fa-mobile-alt"></i> {{$m->alt_mobile}}</h6> --}}
+                          
                           <h6><i class="fas fa-envelope"></i> {{$m->email}}</h6>
-                          <h6><i class="fas fa-birthday-cake"></i> {{$m->dob}}</h6>
+                          <h6><i class="fas fa-birthday-cake"></i> {{myDateFormat($m->dob)}}</h6>
                   </div>
               </div>
             @endforeach

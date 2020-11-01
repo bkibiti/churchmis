@@ -93,18 +93,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('events-attendance.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Events Attendance</p>
+              <p>Event Attendance</p>
             </a>
           </li>
-        </ul>
+      </ul>
       </li>
       <li class="nav-item has-treeview">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-university"></i>
           <p>
-            Deposits
+            Pledges
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -112,18 +112,22 @@
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>ChartJS</p>
+              <p>Fund Activities</p>
             </a>
           </li>
-   
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-angle-double-right"></i>
+              <p>View Pledges</p>
+            </a>
           </li>
         </ul>
       </li>
       <li class="nav-item has-treeview">
         <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-money-check-alt"></i>
+          <i class="nav-icon fas fa-credit-card"></i>
           <p>
-            Fundraiser
+            Payments
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -134,10 +138,9 @@
               <p>ChartJS</p>
             </a>
           </li>
-   
-          </li>
         </ul>
       </li>
+
    
       <li class="nav-header">ADMINISTRATION</li>
     
@@ -180,18 +183,7 @@
               <p>ChartJS</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="fas fa-angle-double-right"></i>
-              <p>Flot</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/inline.html" class="nav-link">
-              <i class="fas fa-angle-double-right"></i>
-              <p>Inline</p>
-            </a>
-          </li>
+       
           <li class="nav-item">
             <a href="pages/charts/flot.html" class="nav-link">
               <i class="fas fa-angle-double-right"></i>

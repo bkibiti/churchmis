@@ -3,83 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\EventType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEvent;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $event = Event::all();
+        return view('events.index', compact("event"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $etype = EventType::all();
+         return view('events.create', compact("etype"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreEvent $request)
     {
-        //
+        $event = new Event;
+        $event->fill($request->all());
+        $event->start = toDbDateTimeFormat($request->start);
+        $event->end = toDbDateTimeFormat($request->end);
+        $event->save();
+
+        session()->flash("alert-success", "Record Saved Successfully!");
+        return redirect()->route('events.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
     public function show(Event $event)
     {
-        //
+        return view('events.show',compact('event'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Event $event)
     {
-        //
+        $etype = EventType::all();
+        return view('events.edit', compact("etype","event"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Event $event)
+
+    public function update(StoreEvent $request, Event $event)
     {
-        //
+        $event->fill($request->all());
+        $event->start = toDbDateTimeFormat($request->start);
+        $event->end = toDbDateTimeFormat($request->end);
+        $event->save();
+
+        session()->flash("alert-success", "Record Updated Successfully!");
+        return redirect()->route('events.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Event $event)
+  
+    public function destroy(Request $request)
     {
-        //
+        try {
+            Event::destroy($request->id);
+            session()->flash("alert-success", "Record Deleted successfully!");
+            return back();
+        } catch (Exception $exception) {
+            session()->flash("alert-danger", "Something went wrong!");
+            return back();
+        }
     }
 }

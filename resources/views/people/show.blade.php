@@ -35,13 +35,13 @@
             <label>Mobile: </label> {{$person->mobile_phone}} <br>
             <label>Alt Mobile: </label> {{$person->alt_mobile}} <br>
             <label>E-Mail: </label> {{$person->email}} <br>
-            <label>Date of Birth: </label>  {{$person->dob}} <br>
+            <label>Date of Birth: </label>  {{myDateFormat($person->dob)}} <br>
             <label>Address: </label> {{$person->address}} <br>
             <label>Region: </label> {{$person->region}} <br>
             <label>District: </label> {{$person->district}} <br>
-            <label>Date of Membership: </label> {{$person->membership_date}} <br>
-            <label>Date of Confirmation: </label> {{$person->date_confirmation}} <br>
-            <label>Date of Marriage: </label> {{$person->date_marriage}} <br>
+            <label>Date of Membership: </label> {{myDateFormat($person->membership_date)}} <br>
+            <label>Date of Confirmation: </label> {{myDateFormat($person->date_confirmation)}} <br>
+            <label>Date of Marriage: </label> {{myDateFormat($person->date_marriage)}} <br>
 
         </div>
         <!-- /.card-body -->

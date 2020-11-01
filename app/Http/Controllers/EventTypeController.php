@@ -14,12 +14,10 @@ class EventTypeController extends Controller
         return view('event_types.index', compact("etype"));
     }
 
- 
     public function create()
     {
         return view('event_types.create');
     }
-
     
     public function store(Request $request)
     {

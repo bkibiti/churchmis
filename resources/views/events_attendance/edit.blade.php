@@ -35,7 +35,7 @@
        
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Event<font color="red">*</font></label>
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                     <select class="form-control select2" id="event_id" name ="event_id" required>
                         <option value="">Select Event</option>
                       @foreach ($event as $e)
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group row" >
               <label class="col-sm-2 col-form-label">Attendance Date<font color="red">*</font></label>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" id='date' name='date' required data-target="#datetimepicker1"/>
                   <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
@@ -57,24 +57,24 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Male</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                 <input type="number" class="form-control"  name="male"  id="male" value="{{$eventsAttendance->male}}" required >
                 </div>
                 <label class="col-sm-2 col-form-label">Female</label>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <input type="number" class="form-control"  name="female"  id="female" value="{{$eventsAttendance->female}}" required >
                 </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Children</label>
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                 <input type="number" class="form-control"  name="children"  id="children" value="{{$eventsAttendance->children}}" required >
               </div>
           </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Notes</label>
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                   <input type="text" class="form-control"  name="notes"  id="notes" value="{{$eventsAttendance->notes}}">
                 </div>
             </div>

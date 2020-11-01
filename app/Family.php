@@ -12,5 +12,9 @@ class Family extends Model
         return $this->hasMany('App\Person', 'family_id', 'id');
     }
 
+    public function pledges()
+    {
+        return $this->hasMany('App\Pledge', 'family_id','id');
+    }
     
 }

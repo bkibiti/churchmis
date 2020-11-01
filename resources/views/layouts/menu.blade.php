@@ -110,13 +110,13 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="" class="nav-link">
+          <a href="{{route('fund-activities.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
               <p>Fund Activities</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+          <a href="{{route('pledges.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
               <p>View Pledges</p>
             </a>
@@ -135,7 +135,7 @@
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>ChartJS</p>
+              <p>View Payments</p>
             </a>
           </li>
         </ul>

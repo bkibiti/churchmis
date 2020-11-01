@@ -137,7 +137,38 @@
          
           <div class="card-body">
        
- 
+            @if ($family->pledges->isNotEmpty())
+            <table id="mydatatable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                      <th>Pledge Date</th>
+                      <th>Activity</th>
+                      <th>Amount</th>
+                      <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach ($family->pledges as $p)
+                  <tr>
+                    <td>{{myDateFormat($p->pledge_date)}}</td>
+                    <td>{{$p->activity->name}}</td>
+                    <td>{{number_format($p->amount, 2, '.', ',')}}</td>
+                    <td>{{$p->comment}}</td>
+                
+                  </tr>
+                  @endforeach
+                  
+                
+                </tbody>
+            </table>
+          @else
+            
+              <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="icon fas fa-info"></i>
+                  Family has Pledges
+              </div>
+          @endif
       
  
           </div>

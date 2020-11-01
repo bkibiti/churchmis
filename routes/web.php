@@ -35,3 +35,9 @@ Route::resource('event-types', 'EventTypeController');
 Route::resource('events', 'EventController');
 Route::resource('events-attendance', 'EventAttendanceController');
 
+//pledges
+Route::resource('pledges', 'PledgeController');
+
+Route::resource('fund-activities', 'FundActivityController')->only([
+    'index', 'store','update','destroy'
+]);

@@ -34,7 +34,7 @@
        
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Event Type<font color="red">*</font></label>
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                     <select class="form-control select2" id="type_id" name ="type_id" required>
                         <option value="">Select Event Type</option>
                       @foreach ($etype as $e)
@@ -45,14 +45,14 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Event Title <font color="red">*</font></label>
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                   <input type="text" class="form-control"  name="title"  id="title" required >
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Event Description <font color="red">*</font></label>
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                   <input type="text" class="form-control"  name="description"  id="description" required>
                 </div>
             </div>
@@ -60,7 +60,7 @@
      
           <div class="form-group row" >
             <label class="col-sm-2 col-form-label">Event Start Date</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input"  id="start", name="start" data-target="#datetimepicker2"/>
                   <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
@@ -69,7 +69,7 @@
               </div>
             </div>
             <label class="col-sm-2 col-form-label">End Date</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                 <input type="text" class="form-control datetimepicker-input" id='end' name='end' data-target="#datetimepicker1"/>
                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
@@ -80,27 +80,27 @@
           </div>
           <div class="form-group row">
               <label class="col-sm-2 col-form-label">Event Location<font color="red">*</font></label>
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                 <input type="text" class="form-control"  name="location"  id="location" required>
               </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Contact Person 1</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <input type="text" class="form-control"  name="contact_person"  id="contact_person" >
             </div>
             <label class="col-sm-2 col-form-label">Mobile</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <input type="text" class="form-control"  name="mobile"  id="mobile" >
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Contact Person 2</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <input type="text" class="form-control"  name="alt_contact_person"  id="alt_contact_person" >
             </div>
             <label class="col-sm-2 col-form-label">Mobile</label>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <input type="text" class="form-control"  name="alt_mobile"  id="alt_mobile" >
             </div>
           </div>

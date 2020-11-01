@@ -31,4 +31,10 @@ class Person extends Model
 
     }
 
+    public function pledges()
+    {
+        return $this->hasMany('App\Pledge', 'person_id','id');
+    }
+
+
 }

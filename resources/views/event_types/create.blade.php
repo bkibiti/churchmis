@@ -146,7 +146,6 @@
     $('#occurance').on('select2:selecting', function(e) {
          
          var id = e.params.args.data.id;
-        console.log(id);
         if (id=='none') {
           $('#dow').hide();
           $('#dom').hide();

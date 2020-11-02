@@ -8,6 +8,7 @@ use App\Family;
 use App\Group;
 use App\FundActivity;
 use Auth;
+use DB;
 
 use Illuminate\Http\Request;
 class PledgeController extends Controller
@@ -16,17 +17,10 @@ class PledgeController extends Controller
     public function index()
     {
         // DB::enableQueryLog();//enable query logging
-
-        $personPledge = Pledge::with('Person')->where('pledger','=','Person')->get();
-
-
         // dd(DB::getQueryLog());//print sql query
 
-        $familyPledge = Pledge::with('Family')->where('pledger','=','Family')->get();
-        $groupPledge = Pledge::with('Group')->where('pledger','=','Group')->get();
-      
-        return view('pledges.index', compact("personPledge","familyPledge","groupPledge"));
-
+        $pledges = DB::table('vw_pledges_and_payments')->whereNotNull('pledge_id')->get();
+        return view('pledges.index', compact("pledges"));
     }
 
    
@@ -71,7 +65,7 @@ class PledgeController extends Controller
    
     public function show(Pledge $pledge)
     {
-        //
+        
     }
 
 

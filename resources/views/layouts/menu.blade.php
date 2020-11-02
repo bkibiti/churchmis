@@ -133,7 +133,7 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('payments.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
               <p>View Payments</p>
             </a>
@@ -180,20 +180,33 @@
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>ChartJS</p>
+              <p>Salutation</p>
             </a>
           </li>
        
           <li class="nav-item">
-            <a href="pages/charts/flot.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Flot</p>
+              <p>Person Roles</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/charts/inline.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Inline</p>
+              <p>Person Classification</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-angle-double-right"></i>
+              <p>Group Positions</p>
+            </a>
+          </li>
+      
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="fas fa-angle-double-right"></i>
+              <p>Payment Methods</p>
             </a>
           </li>
         </ul>

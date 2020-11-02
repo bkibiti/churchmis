@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">List of Pledges</h1>
+        <h1 class="m-0 text-dark">List of Payments</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Pledges / View Pledges</li>
+          <li class="breadcrumb-item active">Payments / View Payments</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -27,9 +27,9 @@
     <div class="col-md-12">
       <div class="card card-outline card-warning">
         <div class="card-header">
-          <a href="{{route('pledges.create')}}">
+          <a href="{{route('payments.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Pledge
+                  Add Payment
               </button>
           </a>
         </div>
@@ -38,28 +38,28 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Pledger Type</th>
+                    <th>Payer Type</th>
                     <th>Name</th>
                     <th>Activity</th>
-                    <th>Pledge Date</th>
+                    <th>Payment Date</th>
                     <th>Amount</th>
-                    <th>Paid Amount</th>
+                    <th>Payment Method</th>
                     <th>Comments</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach ($pledges as $p)
+              @foreach ($payments as $p)
                 <tr>
                   <td>{{$p->pledger}}</td>
                   <td>{{$p->name}}</td>
                   <td>{{$p->activity}}</td>
-                  <td>{{myDateFormat($p->pledge_date)}}</td>
-                  <td>{{number_format($p->pledge_amount, 2, '.', ',')}}</td>
+                  <td>{{myDateFormat($p->pay_date)}}</td>
                   <td>{{number_format($p->pay_amount, 2, '.', ',')}}</td>
-                  <td>{{$p->pledge_comment}}</td>
+                  <td>{{$p->pay_method}}</td>
+                  <td>{{$p->pay_comment}}</td>
                   <td>
-                    <a href="{{ route('pledges.edit', $p->pledge_id) }}">
+                    <a href="{{ route('pledges.edit', $p->pay_id) }}">
                         <span class="badge badge-primary">
                           <i class="fas fa-edit "></i>
                         </span>
@@ -67,7 +67,7 @@
 
                     <a href="#">
                         <button class="btn"
-                                data-id="{{$p->pledge_id}}" data-name=""
+                                data-id="{{$p->pay_id}}" data-name=""
                                 type="button" data-toggle="modal" data-target="#delete">
                                 <span class="badge badge-danger">
                                   <i class="fas fa-trash"></i>
@@ -77,7 +77,8 @@
                   </td>
                 </tr>
               @endforeach
- 
+
+            
             </tbody>
         </table>
         </div>
@@ -109,15 +110,9 @@
         {
             "targets": 4,
             "className": "text-right",
-        },
-        {
-            "targets": 5,
-            "className": "text-right",
         }
         ],
     });
-
-
 
     $('#delete').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget);

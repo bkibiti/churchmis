@@ -41,3 +41,6 @@ Route::resource('pledges', 'PledgeController');
 Route::resource('fund-activities', 'FundActivityController')->only([
     'index', 'store','update','destroy'
 ]);
+//payments
+Route::resource('payments', 'PaymentController');
+Route::post('payments/pledges', 'PaymentController@getPledges')->name('payments.pledges');

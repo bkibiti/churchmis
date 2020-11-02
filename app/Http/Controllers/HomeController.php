@@ -3,26 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Person;
+use App\Family;
+use App\Group;
+use App\Event;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
-        return view('dashboard');
+        $personCount = Person::count();
+        $familyCount = Family::count();
+        $groupCount = Group::count();
+        $upcoming = Event::whereDate('start', '>', Carbon::now())->count();
+        $ongoing = Event::whereDate('start', '<', Carbon::now())->whereDate('end', '>', Carbon::now())->count();
+        $event = $upcoming . ' / ' . $ongoing;
+
+
+        return view('dashboard',compact("personCount","familyCount","groupCount","event"));
     }
 }

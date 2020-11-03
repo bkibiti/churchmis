@@ -33,11 +33,11 @@
           <div class="card-body">
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Pledge<font color="red">*</font></label>
+              <label class="col-sm-2 col-form-label">Payment Category<font color="red">*</font></label>
               <div class="col-sm-4">
                     <select class="form-control select2" id="pledged" name ="pledged" >
-                        <option value="1">Not Pledged</option>
-                        <option value="2">Pledged</option>
+                        <option value="1">New Payment</option>
+                        <option value="2">Pledge Payment</option>
                   </select>
               </div>
             </div>

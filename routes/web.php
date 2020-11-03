@@ -28,12 +28,13 @@ Route::resource('family', 'FamilyController');
 Route::resource('groups', 'GroupController');
 Route::resource('group-types', 'GroupTypeController');
 
-Route::view('/calender', 'calender.index');
 
 //envets
 Route::resource('event-types', 'EventTypeController');
 Route::resource('events', 'EventController');
 Route::resource('events-attendance', 'EventAttendanceController');
+
+Route::get('events-calender', 'EventController@calender')->name('calender');
 
 //pledges
 Route::resource('pledges', 'PledgeController');

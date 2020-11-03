@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Person;
+use App\Family;
+use DB;
 use App\EventType;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEvent;
@@ -69,4 +72,17 @@ class EventController extends Controller
             return back();
         }
     }
+
+    public function calender()
+    {
+        $bdays = Person::select(DB::raw('id,CONCAT_WS(" ",first_name,middle_name,last_name) name,MONTH(dob) month, DAY(dob) day'))
+                        ->whereNotNull('dob')->get();
+        $anniversary = Family::select(DB::raw('id,name,MONTH(wedding_date) month, DAY(wedding_date) day'))
+                        ->whereNotNull('wedding_date')->get();
+        $events = Event::select('title','start','end')->get();
+                        
+// dd($anniversary);
+        return view('calender.index', compact("bdays","anniversary","events"));
+    }
+
 }

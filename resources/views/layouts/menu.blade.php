@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/calender" class="nav-link">
+      <a href="{{route('calender')}}" class="nav-link">
           <i class="nav-icon far fa-calendar-alt"></i>
           <p>
             Calendar
@@ -132,6 +132,12 @@
           </p>
         </a>
         <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('payments.create')}}" class="nav-link">
+              <i class="fas fa-angle-double-right"></i>
+              <p>Add Payment</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{route('payments.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>

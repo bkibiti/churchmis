@@ -38,9 +38,11 @@
             <div class="card-body">
               <i class="fas fa-square text-warning"></i> Birthday <br>
               <i class="fas fa-square text-success"></i> Anniversary <br>
-              <i class="fas fa-square text-danger"></i> Birthdays <br>
-              <i class="fas fa-square text-muted"></i> Birthdays
-
+                @foreach ($etype as $event)
+                  <span style ="color: {{$event->color}}" >
+                      <i class="fas fa-square" ></i>  
+                  </span> {{$event->name}} <br>
+                @endforeach
             </div>
           </div>
         </div>
@@ -105,6 +107,7 @@ var calendarEl = document.getElementById('calendar');
           },
       )
     });
+
     //wedding anniversaries 
     $.each(@json($anniversary), function(index, value) { 
       var url = '{{ route("family.show", ":id") }}';
@@ -117,23 +120,29 @@ var calendarEl = document.getElementById('calendar');
             start          : new Date(y, month, value.day),
             end            : new Date(y, month, value.day),
             url            : url,
-            value         :value.month,
             backgroundColor: '#00a65a', 
             borderColor    : '#00a65a' 
           },
       )
     });
- 
+  //events
     $.each(@json($events), function(index, value) { 
-      events.push(
-          {
-            title          : value.title,
-            start          : new Date(value.start),
-            end            : new Date(value.end),
-            backgroundColor: '#3c8dbc', 
-            borderColor    : '#3c8dbc' 
-          },
-      )
+        //get color of event type
+        var color = '#3c8dbc';
+        $.each(@json($etype), function(index, val) { 
+            if (val.id == value.type_id) {
+              color = val.color;
+            }
+        });//end get color
+        events.push(
+            {
+              title          : value.title,
+              start          : new Date(value.start),
+              end            : new Date(value.end),
+              backgroundColor: color, 
+              borderColor    : color 
+            },
+        )
     });
 
 
@@ -147,48 +156,6 @@ var calendar = new Calendar(calendarEl, {
   'themeSystem': 'bootstrap',
  
   events    : events,
-
-  // [
-  //   // {
-  //   //   title          : 'All Day Event',
-  //   //   start          : new Date(y, m, 1),
-  //   //   backgroundColor: '#f56954', //red
-  //   //   borderColor    : '#f56954', //red
-  //   //   allDay         : true
-  //   // },
-
-  //   // {
-  //   //   title          : 'Meeting',
-  //   //   start          : new Date(y, m, d, 10, 30),
-  //   //   allDay         : false,
-  //   //   backgroundColor: '#0073b7', //Blue
-  //   //   borderColor    : '#0073b7' //Blue
-  //   // },
-  //   // {
-  //   //   title          : 'Lunch',
-  //   //   start          : new Date(y, m, d, 12, 0),
-  //   //   end            : new Date(y, m, d, 14, 0),
-  //   //   allDay         : false,
-  //   //   backgroundColor: '#00c0ef', //Info (aqua)
-  //   //   borderColor    : '#00c0ef' //Info (aqua)
-  //   // },
-  //   // {
-  //   //   title          : 'Birthday Party',
-  //   //   start          : new Date(y, m, d + 1, 19, 0),
-  //   //   end            : new Date(y, m, d + 1, 22, 30),
-  //   //   allDay         : false,
-  //   //   backgroundColor: '#00a65a', //Success (green)
-  //   //   borderColor    : '#00a65a' //Success (green)
-  //   // },
-  //   // {
-  //   //   title          : 'Click for Google',
-  //   //   start          : new Date(y, m, 28),
-  //   //   end            : new Date(y, m, 28),
-  //   //   url            : 'http://google.com/',
-  //   //   backgroundColor: '#3c8dbc', //Primary (light-blue)
-  //   //   borderColor    : '#3c8dbc' //Primary (light-blue)
-  //   // }
-  // ],
 
   editable  : true,
 

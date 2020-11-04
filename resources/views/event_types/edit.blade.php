@@ -1,7 +1,8 @@
 @extends("layouts.master")
 
 @section('page_css')
-
+ <!-- Bootstrap Color Picker -->
+ <link rel="stylesheet" href="{{asset("plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css")}}">
 @endsection
 
 @section('content-header')
@@ -95,7 +96,12 @@
               </div>
             </div>
           </div>
-
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Calendar Color</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control my-colorpicker1" name="color" id="color" value="{{$eventType->color}}" required>
+            </div>
+          </div>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
@@ -118,7 +124,8 @@
 @endsection
 
 @push("page_scripts")
-
+  <!-- bootstrap color picker -->
+  <script src="{{asset("plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js")}}"></script>
 @include('partials.notification')
 
 <script>
@@ -145,7 +152,8 @@
   
     $(document).ready(function(){
         $('.select2').select2()
-      
+        $('.my-colorpicker1').colorpicker()
+
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 format: 'LT'

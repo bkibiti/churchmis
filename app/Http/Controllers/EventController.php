@@ -79,10 +79,12 @@ class EventController extends Controller
                         ->whereNotNull('dob')->get();
         $anniversary = Family::select(DB::raw('id,name,MONTH(wedding_date) month, DAY(wedding_date) day'))
                         ->whereNotNull('wedding_date')->get();
-        $events = Event::select('title','start','end')->get();
+        $events = Event::select('title','start','end','type_id')->get();
+        
+        $etype = EventType::all();
                         
 // dd($anniversary);
-        return view('calender.index', compact("bdays","anniversary","events"));
+        return view('calender.index', compact("bdays","anniversary","events","etype"));
     }
 
 }

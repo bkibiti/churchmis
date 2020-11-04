@@ -21,32 +21,23 @@ class EventTypeController extends Controller
     
     public function store(Request $request)
     {
-
+// dd($request->all());
         $etype = new EventType;
-
-        if ($request->occurance =="none") {
-            $etype->name= $request->name;
-            $etype->occurance= $request->occurance;
-            $etype->start_time= date("h:i", strtotime( $request->start_time ));
-        }
+  
         if ($request->occurance =="weekly") {
-            $etype->name= $request->name;
-            $etype->occurance= $request->occurance;
-            $etype->start_time= date("h:i", strtotime( $request->start_time ));
             $etype->occurance_dow = $request->occurance_dow;
         }
         if ($request->occurance =='monthly') {
-            $etype->name= $request->name;
-            $etype->occurance= $request->occurance;
-            $etype->start_time= date("h:i", strtotime( $request->start_time ));
             $etype->occurance_dom = $request->occurance_dom;
         }
         if ($request->occurance =='yearly') {
-            $etype->name= $request->name;
-            $etype->occurance= $request->occurance;
-            $etype->start_time= date("h:i", strtotime( $request->start_time ));
             $etype->occurance_doy = toDbDateFormat($request->occurance_doy);
         }
+        
+        $etype->name= $request->name;
+        $etype->occurance= $request->occurance;
+        $etype->start_time= date("h:i", strtotime( $request->start_time ));
+        $etype->color= $request->color;
         $etype->save();
 
         session()->flash("alert-success", "Record Saved Successfully!");
@@ -65,29 +56,21 @@ class EventTypeController extends Controller
   
     public function update(Request $request, EventType $eventType)
     {
-        if ($request->occurance =="none") {
-            $eventType->name= $request->name;
-            $eventType->occurance= $request->occurance;
-            $eventType->start_time= date("h:i", strtotime( $request->start_time ));
-        }
+
         if ($request->occurance =="weekly") {
-            $eventType->name= $request->name;
-            $eventType->occurance= $request->occurance;
-            $eventType->start_time= date("h:i", strtotime( $request->start_time ));
             $eventType->occurance_dow = $request->occurance_dow;
         }
         if ($request->occurance =='monthly') {
-            $eventType->name= $request->name;
-            $eventType->occurance= $request->occurance;
-            $eventType->start_time= date("h:i", strtotime( $request->start_time ));
             $eventType->occurance_dom = $request->occurance_dom;
         }
         if ($request->occurance =='yearly') {
-            $eventType->name= $request->name;
-            $eventType->occurance= $request->occurance;
-            $eventType->start_time= date("h:i", strtotime( $request->start_time ));
             $eventType->occurance_doy = toDbDateFormat($request->occurance_doy);
         }
+
+        $eventType->name= $request->name;
+        $eventType->occurance= $request->occurance;
+        $eventType->start_time= date("h:i", strtotime( $request->start_time ));
+        $eventType->color= $request->color;
         $eventType->save();
 
         session()->flash("alert-success", "Record Updated Successfully!");

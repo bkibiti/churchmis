@@ -36,15 +36,22 @@
               <h3 class="card-title">Event Types</h3>
             </div>
             <div class="card-body">
-              <i class="fas fa-square text-warning"></i> Birthday <br>
-              <i class="fas fa-square text-success"></i> Anniversary <br>
+              <i class="fas fa-square" style="color:#00a65a"></i> Anniversary <br>
+              <i class="fas fa-square" style="color:#f39c12"></i> Birthday <br>
                 @foreach ($etype as $event)
-                  <span style ="color: {{$event->color}}" >
-                      <i class="fas fa-square" ></i>  
-                  </span> {{$event->name}} <br>
+                  <i class="fas fa-square"style ="color: {{$event->color}}" ></i> {{$event->name}} <br>
                 @endforeach
             </div>
           </div>
+
+          <div class="card">
+              <a href="{{route('events.create')}}">
+                  <button type="button" class="btn btn-info btn-block">
+                      Add New Event
+                  </button>
+              </a>
+          </div>
+
         </div>
       </div>
       <!-- /.col -->

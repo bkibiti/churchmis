@@ -39,7 +39,7 @@
               <i class="fas fa-square" style="color:#00a65a"></i> Anniversary <br>
               <i class="fas fa-square" style="color:#f39c12"></i> Birthday <br>
                 @foreach ($etype as $event)
-                  <i class="fas fa-square"style ="color: {{$event->color}}" ></i> {{$event->name}} <br>
+                  <i class="fas fa-square" style ="color: {{$event->color}}" ></i> {{$event->name}} <br>
                 @endforeach
             </div>
           </div>

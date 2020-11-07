@@ -84,6 +84,44 @@
   </div>
   <!-- /.row -->
 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title"><i class="fas fa-chart-bar"></i> People Classification</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <label class="col-lg-5">Classification </label>
+              <label class="col-lg-5">% of People </label>
+              <label class="col-lg-2">Count </label>
+            </div>
+           
+            @foreach ($classification as $c)
+              <div class="row">
+                  <div class="col-lg-5">{{$c->name}} </div>
+                  <div class="col-lg-5">
+                    <div class="progress mb-3">
+                        <div class="progress-bar bg-success" role="progressbar"  aria-valuemin="0"
+                        aria-valuemax="100" style="width: {{$c->total/$personCount*100}}%"> </div>
+                    </div>
+
+                  </div>
+                  <div class="col-lg-2">{{$c->total}} </div>
+              </div>
+            @endforeach
+       
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col (right) --
+    </div>
+
+
+
   <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
 @endsection

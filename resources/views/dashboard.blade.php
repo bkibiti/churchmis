@@ -86,9 +86,13 @@
 
     <div class="row">
       <div class="col-md-6">
-        <div class="card">
+        <div class="card card-warning">
           <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-chart-bar"></i> People Classification</h3>
+            <h3 class="card-title"><i class="fas fa-chart-bar"></i> Church Members Classification</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+              </button>
+            </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -117,11 +121,99 @@
         </div>
         <!-- /.card -->
       </div>
-      <!-- /.col (right) --
+      <div class="col-md-6">
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title"> <i class="fas fa-chart-bar"></i> Church Members by Age Group</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart">
+              <canvas id="stackedBarChart" style="min-height: 200px; height: 200px; max-height: 200px; max-width: 100%;"></canvas>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
     </div>
 
 
 
-  <!-- /.row (main row) -->
+
 </div><!-- /.container-fluid -->
 @endsection
+
+@push("page_scripts")
+
+<!-- ChartJS -->
+<script src="{{asset("plugins/chart.js/Chart.min.js")}}"></script>
+
+<script>
+  $(function () {
+  
+// console.log(@json($ageCategory));
+    var males = [];
+    var females = [];
+
+    $.each(@json($ageCategory[0]), function(key, value) {
+        if (value != 'F') {
+          females.push(value);
+        }
+    });
+    $.each(@json($ageCategory[1]), function(key, value) {
+        if (value != 'M') {
+          males.push(value);
+        }
+    });
+
+
+    var chartData = {
+      labels  : ['Under 10', '10 - 19', '20 - 29', '30 - 39', '40 - 49', '50 - 59', '60 - 69','70 - 79','Over 80'],
+      datasets: [
+        {
+          label               : 'Male',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          data                : males
+        },
+        {
+          label               : 'Female',
+          backgroundColor     : 'rgba(66, 138, 107, 1)',
+          borderColor         : 'rgba(66, 138, 107, 1)',
+          data                : females
+        },
+      ]
+    }
+
+
+    var chartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: chartData,
+      options: chartOptions
+    })
+
+  })
+</script>
+
+@endpush

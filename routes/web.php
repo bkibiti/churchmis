@@ -42,6 +42,19 @@ Route::resource('pledges', 'PledgeController');
 Route::resource('fund-activities', 'FundActivityController')->only([
     'index', 'store','update','destroy'
 ]);
+
 //payments
 Route::resource('payments', 'PaymentController');
 Route::post('payments/pledges', 'PaymentController@getPledges')->name('payments.pledges');
+
+//users routes
+Route::get('users', 'UserController@index')->name('users.index');
+Route::post('users/register', 'UserController@store')->name("users.store");
+Route::post('users/update', 'UserController@update')->name("users.update");
+Route::put('users/delete', 'UserController@delete')->name("users.delete");
+Route::post('users/de-actiavate', 'UserController@deActivate')->name("users.deactivate");
+Route::post('users/change-password', 'UserController@changePassword')->name('change-password');
+Route::get('users/change-password', 'UserController@changePasswordForm')->name('change-pass-form');
+Route::post('user-profile/update', 'UserController@updateProfile')->name("update-profile");
+Route::get('users/search', 'UserController@search')->name("users.search");
+Route::post('users/user-role-id', 'UserController@getRoleID')->name('getRoleID');

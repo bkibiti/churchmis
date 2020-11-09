@@ -65,3 +65,11 @@ function myDateFormat($value){
     }
     return date_format(date_create($value),"d M Y");
 }
+
+function getRoles(){
+    return DB::table('se_roles')
+        ->select('id','name')
+        ->orderBy('name')
+        ->get();
+}
+

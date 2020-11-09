@@ -88,7 +88,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2019-2020 <a href="http://church.co.tz">Church MIS</a>.</strong>
+    <strong>Copyright &copy; 2019-2020 <a href="http://smartchurch.or.tz">{{ config('app.name', 'Church MIS') }} </a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 2.0.0

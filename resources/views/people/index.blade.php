@@ -8,7 +8,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">People List</h1>
+        <h1 class="m-0 text-dark">Members List</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -38,7 +38,7 @@
         <div class="card-header">
           <a href="{{route('people.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Person
+                  Add Member
               </button>
           </a>
         </div>

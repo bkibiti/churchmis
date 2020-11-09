@@ -34,7 +34,7 @@
           <li class="nav-item">
           <a href="{{route('people.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>View Persons</p>
+              <p>View Members</p>
             </a>
           </li>
           <li class="nav-item">

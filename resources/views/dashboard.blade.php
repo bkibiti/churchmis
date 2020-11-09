@@ -25,9 +25,9 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{$personCount}}</h3>
+          <h3>{{$personCount[0]->count + $personCount[1]->count}}</h3>
 
-          <p>People</p>
+        <p>Members {{'(M '.$personCount[1]->count .'/F ' .$personCount[0]->count .')'}}</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
@@ -108,7 +108,7 @@
                   <div class="col-lg-5">
                     <div class="progress mb-3">
                         <div class="progress-bar bg-success" role="progressbar"  aria-valuemin="0"
-                        aria-valuemax="100" style="width: {{$c->total/$personCount*100}}%"> </div>
+                        aria-valuemax="100" style="width: {{$c->total/($personCount[0]->count + $personCount[1]->count)*100}}%"> </div>
                     </div>
 
                   </div>

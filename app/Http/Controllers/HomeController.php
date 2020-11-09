@@ -42,7 +42,7 @@ class HomeController extends Controller
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) BETWEEN 60 and 69,1,0)) as '60 - 69',
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) BETWEEN 70 and 79,1,0)) as '70 - 79',
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) >=80, 1, 0)) as '80 - 99'
-            FROM Persons group by gender");
+            FROM persons group by gender");
 
         return view('dashboard',compact("personCount","familyCount","groupCount","event","classification","ageCategory"));
     }

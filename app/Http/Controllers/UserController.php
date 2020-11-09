@@ -49,13 +49,11 @@ class UserController extends Controller
         $request->validate([
             'name1' => 'required|string|max:100',
             'role1' => 'required',
-            'position1' => 'nullable|string|max:50',
         ]);
 
 
         $user = User::findOrFail($request->UserID);
         $user->name = $request->name1;
-        $user->position = $request->position1;
         $user->mobile = $request->mobile1;
         $user->save();
 

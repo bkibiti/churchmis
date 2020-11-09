@@ -70,8 +70,7 @@
               
                       <a href="#">
                           <button class="btn btn-rounded btn-info btn-sm" data-name="{{$user->name}}"
-                              data-email="{{$user->email}}" data-id="{{$user->id}}" data-username="{{$user->username}}"
-                              data-job="{{$user->position}}"  data-mobile="{{$user->mobile}}"
+                              data-email="{{$user->email}}" data-id="{{$user->id}}"data-mobile="{{$user->mobile}}"
                               data-role="{{ implode(", ", $user->getRoleNames()->toArray()) }}"
                               type="button" data-toggle="modal" data-target="#editUser">Edit</button>
                       </a>
@@ -137,19 +136,15 @@
       $('#editUser').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var name = button.data('name')
-        var username = button.data('username')
         var email=button.data('email')
         var mobile=button.data('mobile')
-        var job=button.data('job')
         var role=button.data('role')
         var id=button.data('id')
         var modal = $(this)
 
 
         modal.find('.modal-body #name1').val(name);
-        modal.find('.modal-body #username1').val(username);
         modal.find('.modal-body #email1').val(email);
-        modal.find('.modal-body #position1').val(job);
         modal.find('.modal-body #mobile1').val(mobile).change();
         modal.find('.modal-body #UserID').val(id);
 

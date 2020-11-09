@@ -6,11 +6,11 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-            <div class="modal-body">
+                </div>
 
-                <div class="panel-body">
-                    <form method="POST" action="{{route('users.update') }}" >
+                <div class="card-body">
+            <form method="POST" action="{{route('users.update') }}" >
+
                         @csrf
 
                         <div class="form-group row">
@@ -24,24 +24,13 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }} <font color="red">*</font></label>
-
-                            <div class="col-md-8">
-                                <input id="username1" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username1" value="{{ old('username') }}" disabled>
-
-                                <span class="text-danger">
-                                     <strong id="username1-error"></strong>
-                                </span>
-                            </div>
-                        </div>
-
+                   
 
                         <div class="form-group row">
-                            <label for="email1" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }} </label>
+                            <label for="email1" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}<font color="red">*</font> </label>
 
                             <div class="col-md-8">
-                                <input id="email1" type="email" class="form-control" name="email1" value="{{ old('email1') }}" >
+                                <input id="email1" type="email" class="form-control" name="email1" value="{{ old('email1') }}" required>
 
                                 <span class="text-danger">
                                      <strong id="email-error1"></strong>
@@ -49,7 +38,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                                <label for="mobile1" class="col-md-4 col-form-label text-md-right">{{ __('Mobile Number') }}</label>
+                                <label for="mobile1" class="col-md-4 col-form-label text-md-right">{{ __('Mobile') }}</label>
 
                                 <div class="col-md-8">
                                     <input id="mobile1" type="text" class="form-control{{ $errors->has('mobile1') ? ' is-invalid' : '' }}" name="mobile1" value="{{ old('mobile1') }}" data-inputmask='"mask": "0999-999-9999"' data-mask>
@@ -59,17 +48,7 @@
                                     </span>
                                 </div>
                         </div>
-                        <div class="form-group row">
-                                <label for="job1" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
-
-                                <div class="col-md-8">
-                                    <input id="position1" type="text" class="form-control" name="position1" value="{{ old('position1') }}">
-
-                                    <span class="text-danger">
-                                         <strong id="position-error1"></strong>
-                                    </span>
-                                </div>
-                        </div>
+          
 
                         <div class="form-group row">
                                 <label for="role1" class="col-md-4 col-form-label text-md-right">{{ __('User Role') }} <font color="red">*</font></label>
@@ -88,14 +67,16 @@
 
 
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" id="update" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
+                       
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                </div>
+            </form>
 
-            </div>
+        
+            
 
 
           </div><!-- /.modal-content -->

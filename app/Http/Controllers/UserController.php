@@ -126,7 +126,7 @@ class UserController extends Controller
 
     public function getRoleID(Request $request)
     {
-        $data = DB::table('roles')
+        $data = DB::table('se_roles')
             ->select('id')
             ->where('name', $request->role)
             ->get();

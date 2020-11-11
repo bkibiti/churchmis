@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Users</h1>
+        <h1 class="m-0 text-dark">User Management</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-          <li class="breadcrumb-item active">Users</li>
+          <li class="breadcrumb-item active">Users / User Management</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -69,10 +69,14 @@
                   <td style='white-space: nowrap'>
               
                       <a href="#">
-                          <button class="btn btn-rounded btn-info btn-sm" data-name="{{$user->name}}"
+                          <button class="btn" data-name="{{$user->name}}"
                               data-email="{{$user->email}}" data-id="{{$user->id}}"data-mobile="{{$user->mobile}}"
                               data-role="{{ implode(", ", $user->getRoleNames()->toArray()) }}"
-                              type="button" data-toggle="modal" data-target="#editUser">Edit</button>
+                              type="button" data-toggle="modal" data-target="#editUser"> <span class="badge badge-primary">
+                                <i class="fas fa-edit "></i>
+                              </span>
+                          </button>
+                        
                       </a>
 
 
@@ -87,8 +91,7 @@
                           </a>
                           @endif
 
-
-                      </td>
+                    </td>
                   {{-- @endcan --}}
                      
               </tr>
@@ -98,7 +101,7 @@
           </table>
 
         </div>
-        <!-- /.card-body -->
+       
       </div>
      
     </div>

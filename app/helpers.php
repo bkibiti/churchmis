@@ -67,7 +67,7 @@ function myDateFormat($value){
 }
 
 function getRoles(){
-    return DB::table('se_roles')
+    return DB::table('roles')
         ->select('id','name')
         ->orderBy('name')
         ->get();

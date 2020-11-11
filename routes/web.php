@@ -47,6 +47,14 @@ Route::resource('fund-activities', 'FundActivityController')->only([
 Route::resource('payments', 'PaymentController');
 Route::post('payments/pledges', 'PaymentController@getPledges')->name('payments.pledges');
 
+ //user roles
+ Route::get('user-roles', 'RoleController@index')->name('roles.index');
+ Route::get('user-roles/create', 'RoleController@create')->name('roles.create');
+ Route::post('user-roles', 'RoleController@store')->name('roles.store');
+ Route::get('user-roles/{id}/edit', 'RoleController@edit')->name('roles.edit');
+ Route::post('user-roles/update', 'RoleController@update')->name('roles.update');
+ Route::delete('user-roles/delete', 'RoleController@destroy')->name("roles.destroy");
+ 
 //users routes
 Route::get('users', 'UserController@index')->name('users.index');
 Route::post('users/register', 'UserController@store')->name("users.store");

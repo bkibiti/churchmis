@@ -8,8 +8,8 @@
                         </button>
                 </div>
 
-                <div class="card-body">
-            <form method="POST" action="{{route('users.update') }}" >
+                <div class="modal-body">
+                <form method="POST" action="{{route('users.update') }}" >
 
                         @csrf
 

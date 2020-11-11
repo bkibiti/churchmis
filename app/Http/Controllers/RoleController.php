@@ -25,17 +25,15 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
+  
         $request->validate([
-            'name' => 'unique:roles|required|string|min:2|max:50',
-            'description' => 'required|string|min:5|max:50',
+            'name' => 'unique:roles|required|string|min:4|max:50',
+            'description' => 'string|max:200',
             'permissions' => 'required',
         ]);
 
+        $role = Role::create(['name' =>$request->name,'description'=>$request->description]);
 
-        $role = Role::create([
-            'name' => $request->name,
-            'description' => $request->description
-        ]);
         $role->givePermissionTo($request->permissions);
 
         session()->flash("alert-success", "Role created successfully!");
@@ -47,7 +45,7 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
 
-        $AssignedPermissions = DB::select("SELECT permission_id id FROM role_has_permissions where role_id = " . $id . "");
+        $AssignedPermissions = DB::select("SELECT permission_id id FROM se_role_has_permissions where role_id = " . $id . "");
         $permissionsAll = Permission::get();
 
         $permissionsAssigned = [];
@@ -62,8 +60,8 @@ class RoleController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:2|max:50',
-            'description' => 'required|string|min:5|max:50',
+            'name' => 'required|string|min:4|max:50',
+            'description' => 'string|max:200',
             'permissions' => 'required',
         ]);
 
@@ -71,7 +69,6 @@ class RoleController extends Controller
         $role = Role::findOrfail($request->id);
         $role->name = $request->name;
         $role->description = $request->description;
-
         $role->save();
         $role->syncPermissions($request->permissions);
 

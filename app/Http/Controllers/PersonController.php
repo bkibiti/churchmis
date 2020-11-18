@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Person;
+use App\Group;
 use App\PersonClassification;
 use App\PersonRole;
 use App\PersonSalutation;
@@ -23,9 +24,12 @@ class PersonController extends Controller
     public function create()
     {
         $role = PersonRole::all();
-        $classification = PersonClassification::all();
-        $salute = PersonSalutation::all();
-        return view('people.create',compact("role","classification","salute"));
+        $position = PersonClassification::all();
+        $church_elders = Person::select('id','name')->where('position_id','2')->get();
+        $chairman = Person::select('id','name')->where('position_id','3')->get();
+        $group = Group::all();
+
+        return view('people.create',compact("role",'position','church_elders','chairman','group'));
     }
 
    

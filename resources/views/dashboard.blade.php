@@ -124,7 +124,7 @@
       <div class="col-md-6">
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title"> <i class="fas fa-chart-bar"></i> Church Members by Age Group</h3>
+            <h3 class="card-title"> <i class="fas fa-chart-bar"></i> Idadi ya Washirika kwa Umri</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -162,12 +162,12 @@
     var females = [];
 
     $.each(@json($ageCategory[0]), function(key, value) {
-        if (value != 'F') {
+        if (value != 'Ke') {
           females.push(value);
         }
     });
     $.each(@json($ageCategory[1]), function(key, value) {
-        if (value != 'M') {
+        if (value != 'Me') {
           males.push(value);
         }
     });
@@ -177,13 +177,13 @@
       labels  : ['Under 10', '10 - 19', '20 - 29', '30 - 39', '40 - 49', '50 - 59', '60 - 69','70 - 79','Over 80'],
       datasets: [
         {
-          label               : 'Male',
+          label               : 'Wanaume',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           data                : males
         },
         {
-          label               : 'Female',
+          label               : 'Wanawake',
           backgroundColor     : 'rgba(66, 138, 107, 1)',
           borderColor         : 'rgba(66, 138, 107, 1)',
           data                : females

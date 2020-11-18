@@ -17,7 +17,7 @@ class Person extends Model
 
     public function classification()
     {
-        return $this->belongsTo('App\PersonClassification', 'classification_id','id');
+        return $this->belongsTo('App\PersonClassification', 'position_id','id');
     }
 
     public function notes()

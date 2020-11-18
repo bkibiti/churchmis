@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Group List</h1>
+        <h1 class="m-0 text-dark">Huduma Usharikani</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Group</li>
+          <li class="breadcrumb-item"><a href="#">Nyumbani</a></li>
+          <li class="breadcrumb-item active">Huduma</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -29,7 +29,7 @@
         <div class="card-header">
           <a href="{{route('groups.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Group
+                  Ongeza Huduma
               </button>
           </a>
         </div>
@@ -38,18 +38,16 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Group Name</th>
-                    <th>Group Type</th>
-                    <th>Description</th>
-                    <th>Members</th>
-                    <th>Actions</th>
+                    <th>Huduma</th>
+                    <th>Maelezo</th>
+                    <th>Washiriki</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
               @foreach ($group as $g)
               <tr>
                 <td>{{$g->name}}</td>
-                <td>{{$g->type->name}}</td>
                 <td>{{$g->description}}</td>
                 <td>{{$g->countMembers()}}</td>
                 <td>

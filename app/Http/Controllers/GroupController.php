@@ -22,7 +22,7 @@ class GroupController extends Controller
     {
         $position = GroupPosition::all();
         $groupType = GroupType::all();
-        $people = person::select('id','first_name','middle_name','last_name','address','gender')->get();
+        $people = person::select('id','name','address','gender')->get();
         return view('group.create',compact("people","groupType","position"));
     }
 

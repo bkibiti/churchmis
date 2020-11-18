@@ -8,10 +8,6 @@ class Group extends Model
 {
     public $timestamps = false;
 
-    public function type()
-    {
-        return $this->belongsTo('App\GroupType', 'group_type_id','id');
-    }
 
     public function members()
     {

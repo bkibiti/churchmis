@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
+//localizaiton
+Route::get('localization/{locale}/', 'LocalizationController@index')->name('localization.index');
+
+
 //Person controller
 Route::resource('people', 'PersonController');
 Route::resource('family', 'FamilyController');

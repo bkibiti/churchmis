@@ -16,7 +16,7 @@
       <a href="{{route('calender')}}" class="nav-link">
           <i class="nav-icon far fa-calendar-alt"></i>
           <p>
-            Calendar
+            {{ __('menu.calender')}}
             {{-- <span class="badge badge-info right">2</span> --}}
           </p>
         </a>
@@ -25,7 +25,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-user-friends"></i>
           <p>
-            People
+            {{ __('menu.members')}}
             <i class="fas fa-angle-left right"></i>
             
           </p>
@@ -34,13 +34,13 @@
           <li class="nav-item">
           <a href="{{route('people.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>View Members</p>
+              <p>Orodha ya Washarika</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('family.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>View Families</p>
+              <p>Familia</p>
             </a>
           </li>
       
@@ -52,30 +52,31 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users"></i>
           <p>
-            Groups
+            {{ __('menu.services')}}
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{route('groups.index')}}" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>View Groups</p>
+              <p>Ongeza Huduma</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('groups.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Group Members</p>
+              <p>Tazama Huduma</p>
             </a>
           </li>
+        
         </ul>
       </li>
       <li class="nav-item has-treeview">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-calendar-alt"></i>
           <p>
-            Events
+            Matukio
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -104,7 +105,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-university"></i>
           <p>
-            Pledges
+            {{ __('menu.pledges')}}
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -112,13 +113,13 @@
           <li class="nav-item">
           <a href="{{route('fund-activities.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Fund Activities</p>
+              <p>Aina za Ahadi</p>
             </a>
           </li>
           <li class="nav-item">
           <a href="{{route('pledges.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>View Pledges</p>
+              <p>Tazama Ahadi</p>
             </a>
           </li>
         </ul>
@@ -127,7 +128,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-credit-card"></i>
           <p>
-            Payments
+            Malipo
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -135,13 +136,13 @@
           <li class="nav-item">
             <a href="{{route('payments.create')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Add Payment</p>
+              <p>Fanya Malipo</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('payments.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>View Payments</p>
+              <p>Tazama Malipo</p>
             </a>
           </li>
         </ul>
@@ -183,13 +184,7 @@
           </p>
         </a>
         <ul class="nav nav-treeview">
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="fas fa-angle-double-right"></i>
-              <p>Salutation</p>
-            </a>
-          </li>
-       
+         
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>

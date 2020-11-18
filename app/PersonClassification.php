@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonClassification extends Model
 {
-    Protected $table = 'person_classification';
+    Protected $table = 'person_position';
 }

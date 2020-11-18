@@ -32,8 +32,8 @@ class HomeController extends Controller
         $event = $upcoming . ' / ' . $ongoing;
 
         $classification = DB::select("SELECT cl.name,count(persons.id) total FROM persons 
-        JOIN person_classification cl ON cl.id = classification_id
-        GROUP BY classification_id");
+        JOIN person_position cl ON cl.id = position_id
+        GROUP BY position_id");
 
         $ageCategory = DB::select("SELECT gender,
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) < 10,1,0)) as '0 - 9',
@@ -45,7 +45,7 @@ class HomeController extends Controller
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) BETWEEN 60 and 69,1,0)) as '60 - 69',
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) BETWEEN 70 and 79,1,0)) as '70 - 79',
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) >=80, 1, 0)) as '80 - 99'
-            FROM persons group by gender");
+            FROM persons group by gender order by gender");
 
         return view('dashboard',compact("personCount","familyCount","groupCount","event","classification","ageCategory"));
     }

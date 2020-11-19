@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Ongeza Mwanachama</h5>
+                <h5 class="modal-title">Ongeza Mtegemezi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,11 +16,10 @@
                       
 
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Msharika <font color="red">*</font></label>
+                                <label class="col-sm-4 col-form-label">Jina <font color="red">*</font></label>
                                 <div class="col-sm-8">
                                   <select class="form-control select2" id="member_id" name ="member_id" required>
-                                      <option value="">--Chagua--</option>
-                                      @foreach($people as $p)
+                                      @foreach($members as $p)
                                         <option value="{{ $p->id }}"}}>{{ $p->name }}</option>
                                       @endforeach
                                   </select>
@@ -28,11 +27,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Nafasi katika Kundi <font color="red">*</font></label>
+                                <label class="col-sm-4 col-form-label">Uhusiano <font color="red">*</font></label>
                                 <div class="col-sm-8">
-                                <select class="form-control select2" id="position_id" name ="position_id" required>
-                                    <option value="">--Chagua--</option>
-                                    @foreach($position as $p)
+                                <select class="form-control select2" id="relation_id" name ="relation_id" required>
+                                    @foreach($relations as $p)
                                         <option value="{{ $p->id }}"}}>{{ $p->name  }}</option>
                                     @endforeach
                                 </select>

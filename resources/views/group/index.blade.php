@@ -8,7 +8,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Huduma Usharikani</h1>
+        <h1 class="m-0 text-dark">Orodha ya Huduma/Vikundi</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -27,9 +27,9 @@
     <div class="col-md-12">
       <div class="card card-outline card-warning">
         <div class="card-header">
-          <a href="{{route('groups.create')}}">
+          <a href="{{route('services.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Ongeza Huduma
+                  Ongeza Kikundi
               </button>
           </a>
         </div>
@@ -40,7 +40,7 @@
                 <tr>
                     <th>Huduma</th>
                     <th>Maelezo</th>
-                    <th>Washiriki</th>
+                    <th>Namba ya Washarika</th>
                     <th></th>
                 </tr>
             </thead>
@@ -51,12 +51,12 @@
                 <td>{{$g->description}}</td>
                 <td>{{$g->countMembers()}}</td>
                 <td>
-                  <a href="{{ route('groups.show', $g->id) }}">
+                  <a href="{{ route('services.show', $g->id) }}">
                       <span class="badge badge-success">
                         <i class="fas fa-eye"></i>
                       </span>
                   </a>
-                  <a href="{{ route('groups.edit', $g->id) }}">
+                  <a href="{{ route('services.edit', $g->id) }}">
                       <span class="badge badge-primary">
                         <i class="fas fa-edit "></i>
                       </span>

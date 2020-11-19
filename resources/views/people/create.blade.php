@@ -42,8 +42,8 @@
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="gender" name="gender" required>
                                         <option value="">--Chagua--</option>
-                                        <option value="M" {{ old('gender') == 'Me' ? 'selected' : '' }}>Mwanaume</option>
-                                        <option value="F" {{ old('gender') == 'Ke' ? 'selected' : '' }}>Mwanamke</option>
+                                        <option value="Me" {{ old('gender') == 'Me' ? 'selected' : '' }}>Mwanaume</option>
+                                        <option value="Ke" {{ old('gender') == 'Ke' ? 'selected' : '' }}>Mwanamke</option>
                                     </select>
                                 </div>
                             </div>
@@ -105,16 +105,39 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Jina la Mwenzi</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" value="{{ old('partner_name') }}" name="partner_name" id="partner_name">
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Mahali pa Kufunga Ndoa</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-3">
                                     <input type="text" class="form-control" value="{{ old('marriage_place') }}" name="marriage_place" id="marriage_place">
                                 </div>
                             </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h5 class="mb-2">Wategemezi</h5>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn  btn-rounded btn-icon btn-warning float-right" 
+                                    data-toggle="modal" data-target="#addMember">Ongeza Mtegemezi
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                  <table id="dependants" class="table table-bordered table-striped">
+                            
+                                  </table>
+                                </div>
+                            </div>
+                
+                            <input type="hidden" name="dependant_ids" id="dependant_ids" >
+                            <input type="hidden" name="relation_ids" id="relation_ids">
+
 
 
                         </div>
@@ -177,14 +200,21 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Msharika Jirani</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" value="{{ old('neighbour') }}" name="neighbour" id="neighbour">
+                                    <select class="form-control select2" id="neighbour" name="neighbour">
+                                        <option value="">--Chagua--</option>
+                                        @foreach ($members as $m)
+                                            <option value={{ $m->id }} {{ old('neighbour') == $m->id ? 'selected' : '' }}> {{ $m->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <label class="col-sm-2 col-form-label">Jina la Mzee wa Kanisa</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="church_elder" name="church_elder">
                                         <option value="">--Chagua--</option>
-                                        @foreach ($church_elders as $e)
-                                            <option value={{ $e->id }} {{ old('church_elder') == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
+                                        @foreach ($members as $e)
+                                            @if ($e->position_id == 2)
+                                                <option value={{ $e->id }} {{ old('church_elder') == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -350,8 +380,10 @@
                                 <div class="col-sm-8">
                                     <select class="form-control select2" id="community_leader" name="community_leader">
                                         <option value="">--Chagua--</option>
-                                        @foreach ($chairman as $e)
-                                            <option value={{ $e->id }} {{ old('community_leader') == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
+                                        @foreach ($members as $m)
+                                            @if ($m->position_id == 3)
+                                                <option value={{ $m->id }} {{ old('community_leader') == $m->id ? 'selected' : '' }}> {{ $m->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -359,9 +391,9 @@
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Huduma Usharikani</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control select2" multiple="multiple" id="services" name="services">
+                                    <select class="form-control select2" multiple="multiple" id="services" name="services[]">
                                         <option value="">--Chagua--</option>
-                                        @foreach ($group as $e)
+                                        @foreach ($service as $e)
                                             <option value={{ $e->id }} {{ old('services') == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
                                         @endforeach
                                     </select>
@@ -416,8 +448,11 @@
     </div><!-- /.container-fluid -->
 @endsection
 
+
 @push('page_scripts')
     @include('partials.notification')
+    @include('people.add_dependant')
+    
     <script>
         $(document).ready(function() {
             //Initialize Select2 Elements
@@ -451,6 +486,75 @@
 
         });
 
+
+
+        
+    var members_table = $('#dependants').DataTable({
+        searching: false,
+        bPaginate: false,
+        ordering: false,
+        bInfo: false,
+        scrollY:  "300px",
+        scrollCollapse: true,
+        columns: [
+            { title: "Jina" },
+            { title: "Jinsia" },
+            { title: "Uhusiano" },
+            { title: "Ondoa", defaultContent:  '<button type="button" id="delete_btn" class="btn btn-icon btn-rounded btn-sm btn-danger"> <i class="fas fa-trash"></i></button>'},
+            
+        ]
+    });
+
+        var dependants_list = []; //hold data displayed in members table
+        var dependants_ids = []; //hold dependants ids for saving in db
+        var relations = []; //hold dependants relations
+
+        //add dependat to list of dependants on click of modal form
+        $('#addItemForm').submit(function(event) {
+            event.preventDefault();
+
+            var values = {};
+            $.each($(this).serializeArray(), function(i, field) {
+                values[field.name] = field.value;
+            });
+
+            var data = []; //hold selected dependant values
+            var member_id = values.member_id;
+            var people = @json($members);
+
+            $.each(people, function(index, value) {
+                if (value.id == member_id) {
+                    data.push(value.name);
+                    data.push(value.gender);
+                    data.push($("#relation_id option:selected").text());
+                    dependants_ids.push(value.id);
+                    relations.push(parseInt(values.relation_id));
+
+                }
+            });
+
+
+            dependants_list.push(data);
+            members_table.clear();
+            members_table.rows.add(dependants_list).draw();
+            $('#dependant_ids').val(JSON.stringify(dependants_ids));
+            $('#relation_ids').val(JSON.stringify(relations));
+
+            $('#addMember').modal('hide');
+
+        });
+
+        $('#dependants tbody').on('click', '#delete_btn', function() {
+            var index = members_table.row($(this).parents('tr')).index();
+            dependants_list.splice(index, 1);
+            dependants_ids.splice(index, 1);
+            relations.splice(index, 1);
+            members_table.clear();
+            members_table.rows.add(dependants_list);
+            members_table.draw();
+            $('#dependant_ids').val(JSON.stringify(dependants_ids));
+            $('#relation_ids').val(JSON.stringify(relations));
+        });
     </script>
 
 

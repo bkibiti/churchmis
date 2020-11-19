@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark ">Update Group</h1>
+      <h1 class="m-0 text-dark ">Badilisha Taarifa za Kundi</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
    
@@ -24,37 +24,29 @@
     <div class="col-md-12">
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Group Info</h3>
+          <h3 class="card-title">Taarifa za Kundi</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{route('groups.update',$group->id)}}" method="POST">
+        <form class="form-horizontal" action="{{route('services.update',$service->id)}}" method="POST">
           @csrf
           @method("PUT")
               
           <div class="card-body">
        
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Group Type <font color="red">*</font></label>
-              <div class="col-sm-4">
-                <select class="form-control select2" id="group_type_id" name ="group_type_id" required>
-                    <option value="">--Select Type--</option>
-                    @foreach($groupType as $g)
-                      <option value="{{ $g->id }}" {{ ($group->group_type_id == $g->id ? "selected":"") }}>{{ $g->name  }}</option>
-                    @endforeach
-                </select>
-              </div>
-              <label class="col-sm-2 col-form-label">Group Name<font color="red">*</font></label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control"  name="name"  id="name"  value="{{$group->name}}" placeholder="Family Name" required>
+         
+              <label class="col-sm-3 col-form-label">Jina la Kikundi/Huduma<font color="red">*</font></label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control"  name="name"  id="name"  value="{{$service->name}}" prequired>
               </div>
          
             </div>
        
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Group Description<font color="red">*</font></label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" value="{{$group->description}}" name="description" id="description" required>
+              <label class="col-sm-3 col-form-label">Maelezo ya Kikundi<font color="red">*</font></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{$service->description}}" name="description" id="description" required>
                 </div>
                
             </div>
@@ -63,12 +55,12 @@
       <hr>
             <div class="row">
               <div class="col-sm-6">
-                  <h5 class="mb-2">Group Members</h5>
+                  <h5 class="mb-2">Wanachama</h5>
               </div>
                 <div class="col-sm-6">
                   <button type="button"
                     class="btn  btn-rounded btn-icon btn-warning float-right"
-                    data-toggle="modal" data-target="#addMember">Add Member
+                    data-toggle="modal" data-target="#addMember">Ongeza Mwanachama
                 </button>
             </div>
             </div>
@@ -88,11 +80,17 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <button type="submit" class="btn btn-info float-right">Update</button>
-           
-            <a href="{{route('groups.index')}}">
-              <button type="button" class="btn btn-danger ">Cancel</button>
-           </a>
+            <div class="form-group row">
+              <div class="col-sm-8"></div>
+              <div class="col-sm-2">
+                  <a href="{{ route('services.index') }}">
+                      <button type="button" class="btn btn-danger btn-block">Rudi Nyuma</button>
+                  </a>
+              </div>
+              <div class="col-sm-2">
+                  <button type="submit" class="btn btn-success float-right btn-block">Hifadhi</button>
+              </div>
+          </div>
           </div>
           <!-- /.card-footer -->
         </form>
@@ -162,7 +160,7 @@
             var name = '';
             $.each(people, function(index, value) { 
               if(value.id == member_id){
-                data.push(name.concat(value.first_name,' ',value.middle_name,' ', value.last_name));
+                data.push(value.name);
                 data.push(value.gender);
                 data.push(value.address);
                 data.push($("#position_id option:selected").text()); 
@@ -195,12 +193,12 @@
 
 
         function getMembers(){
-            var people = @json($group->members);
+            var people = @json($service->members);
             var name = '';
             
             $.each(people, function(index, value) { 
                 var data = []; 
-                data.push(name.concat(value.first_name,' ',value.middle_name,' ', value.last_name));
+                data.push(value.name);
                 data.push(value.gender);
                 data.push(value.address);
                 data.push(getPosition(value.pivot.position_id)); 

@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
-use App\GroupType;
+use App\Service;
 use App\GroupPosition;
 use App\Person;
 use App\GroupMember;
 
 use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class ServiceController extends Controller
 {
     public function index()
     {
-        $group = Group::all();
+        $group = Service::all();
         return view('group.index', compact("group"));
     }
   
     public function create()
     {
         $position = GroupPosition::all();
-        $groupType = GroupType::all();
-        $people = person::select('id','name','address','gender')->get();
-        return view('group.create',compact("people","groupType","position"));
+        $people = Person::select('id','name','address','gender')->get();
+        return view('group.create',compact("people","position"));
     }
 
     public function store(Request $request)
@@ -35,15 +33,14 @@ class GroupController extends Controller
         $memberIDs = json_decode($request->member_ids,true);
         $positionIDs = json_decode($request->position_ids,true);
 
-        $group = new Group;
-        $group->group_type_id= $request->group_type_id;
+        $group = new Service;
         $group->name = $request->name;
         $group->description = $request->description;
         $group->save();
 
         for($i= 0; $i < count($memberIDs); $i++){
             $gmember = new GroupMember;
-            $gmember->group_id= $group->id;
+            $gmember->service_id= $group->id;
             $gmember->person_id= $memberIDs[$i];
             $gmember->position_id= $positionIDs[$i];
             $gmember->save();
@@ -53,24 +50,22 @@ class GroupController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function show(Group $group)
+    public function show(Service $service)
     {
-     
         $position = GroupPosition::all();
-        return view('group.show',compact("position","group"));
+        return view('group.show',compact("position","service"));
     }
 
  
-    public function edit(Group $group)
+    public function edit(Service $service)
     {
         $position = GroupPosition::all();
-        $groupType = GroupType::all();
-        $people = person::select('id','first_name','middle_name','last_name','address','gender')->get();
-        return view('group.edit',compact("people","groupType","position","group"));
+        $people = person::select('id','name','address','gender')->get();
+        return view('group.edit',compact("people","position","service"));
     }
 
 
-    public function update(Request $request, Group $group)
+    public function update(Request $request, Service $service)
     {
         $request->validate([
             'member_ids' => 'required',
@@ -78,25 +73,24 @@ class GroupController extends Controller
 
         $memberIDs = json_decode($request->member_ids,true);
         $positionIDs = json_decode($request->position_ids,true);
-
-        $group->group_type_id= $request->group_type_id;
-        $group->name = $request->name;
-        $group->description = $request->description;
-        $group->save();
+        
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->save();
         
         //delete members
-        GroupMember::where('group_id', $group->id)->delete();
+        GroupMember::where('service_id', $service->id)->delete();
 
         for($i= 0; $i < count($memberIDs); $i++){
             $gmember = new GroupMember;
-            $gmember->group_id= $group->id;
+            $gmember->service_id= $service->id;
             $gmember->person_id= $memberIDs[$i];
             $gmember->position_id= $positionIDs[$i];
             $gmember->save();
         }
 
         session()->flash("alert-success", "Record Updated Successfully!");
-        return redirect()->route('groups.index');
+        return redirect()->route('services.index');
     }
 
     public function destroy(Group $group)

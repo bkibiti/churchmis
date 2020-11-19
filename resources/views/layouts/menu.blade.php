@@ -25,7 +25,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-user-friends"></i>
           <p>
-            {{ __('menu.members')}}
+            Washarika
             <i class="fas fa-angle-left right"></i>
             
           </p>
@@ -40,7 +40,7 @@
           <li class="nav-item">
             <a href="{{route('family.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Familia</p>
+              <p>Orodha ya Familia</p>
             </a>
           </li>
       
@@ -52,7 +52,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users"></i>
           <p>
-            {{ __('menu.services')}}
+            Vikundi
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -60,13 +60,13 @@
           <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Ongeza Huduma</p>
+              <p>Ongeza Kikundi</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('groups.index')}}" class="nav-link">
+            <a href="{{route('services.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Tazama Huduma</p>
+              <p>Orodha ya Vikundi</p>
             </a>
           </li>
         

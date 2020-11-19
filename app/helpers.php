@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+use App\Person;
 use App\PersonRole;
 use App\GroupPosition;
+use App\Service;
 
 function toDbDateFormat($val)
 {   
@@ -60,7 +62,7 @@ function myDateTimeFormat($value){
 }
 
 function myDateFormat($value){
-    if ($value == ""){
+    if ($value == "" or $value == "null"){
        return "";
     }
     return date_format(date_create($value),"d M Y");
@@ -73,3 +75,29 @@ function getRoles(){
         ->get();
 }
 
+function array2String($val)
+{
+    if(is_array($val)){
+       $str = implode(',', $val);
+    }else{
+       $str = "";
+    }
+    return $str;
+}
+
+
+function getPersonName($id){
+    $person = Person::find($id);
+    if ($person == null) {
+       return "";
+    } else {
+        return $person->name;
+    }
+}
+
+ function getPersonServices($services)
+{
+    $serviceArray = explode(',', $services);
+    $service = Service::select('name')->whereIn('id', $serviceArray)->get()->implode('name',', ');
+    return  $service;
+}

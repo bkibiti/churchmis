@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Washirika</h1>
+                <h1 class="m-0 text-dark">Orodha ya Washirika</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -22,7 +22,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card card-outline card-info">
                     <div class="card-body">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-md-12">

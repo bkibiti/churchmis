@@ -29,8 +29,8 @@ Route::get('localization/{locale}/', 'LocalizationController@index')->name('loca
 Route::resource('people', 'PersonController');
 Route::resource('family', 'FamilyController');
 
-Route::resource('groups', 'GroupController');
-Route::resource('group-types', 'GroupTypeController');
+Route::resource('services', 'ServiceController');
+// Route::resource('service-types', 'GroupTypeController');
 
 
 //envets

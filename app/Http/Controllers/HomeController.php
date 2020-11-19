@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Person;
 use App\Family;
-use App\Group;
+use App\Service;
 use App\Event;
 use Carbon\Carbon;
 USE DB;
@@ -22,14 +22,13 @@ class HomeController extends Controller
     public function index()
     {
         $personCount = Person::groupBy('gender')->selectRaw('gender,count(*) as count')->orderBy('gender')->get();
-        // dd($personCount[1]->count);
+        //  dd($personCount[1]->count);
         
-
         $familyCount = Family::count();
-        $groupCount = Group::count();
+        $groupCount = Service::count();
         $upcoming = Event::whereDate('start', '>', Carbon::now())->count();
         $ongoing = Event::whereDate('start', '<', Carbon::now())->whereDate('end', '>', Carbon::now())->count();
-        $event = $upcoming . ' / ' . $ongoing;
+        $event = $upcoming + $ongoing;
 
         $classification = DB::select("SELECT cl.name,count(persons.id) total FROM persons 
         JOIN person_position cl ON cl.id = position_id

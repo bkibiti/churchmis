@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{ config('app.name', 'Church MIS') }} | Log in</title>
+  <title>{{ config('app.name', 'SmartChurch') }} | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,11 +21,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Smart</b>Church</a>
+    {{-- <a href=""><b>Smart</b>Church</a> --}}
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+      <img src="{{ asset('dist/img/logo.jpeg') }}" width="260" height="70"> 
       <p class="login-box-msg">Sign in to start</p>
 
       <form method="POST" action="{{ route('login') }}">

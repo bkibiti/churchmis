@@ -32,16 +32,16 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-          <a href="{{route('people.index')}}" class="nav-link">
+          <a href="{{route('people.create')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Orodha ya Washarika</p>
+              <p>Ongeza Msharika</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('family.index')}}" class="nav-link">
-              <i class="fas fa-angle-double-right"></i>
-              <p>Orodha ya Familia</p>
-            </a>
+            <a href="{{route('people.index')}}" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>Orodha ya Washarika</p>
+              </a>
           </li>
       
        
@@ -84,19 +84,19 @@
           <li class="nav-item">
           <a href="{{route('event-types.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Event Types</p>
+              <p>Aina ya Matukio</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('events.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Church Events</p>
+              <p>Orodha ya Matukio</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('events-attendance.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Event Attendance</p>
+              <p>Mahudhurio</p>
             </a>
           </li>
       </ul>
@@ -119,7 +119,7 @@
           <li class="nav-item">
           <a href="{{route('pledges.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Tazama Ahadi</p>
+              <p>Orodha ya Ahadi</p>
             </a>
           </li>
         </ul>

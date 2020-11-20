@@ -26,13 +26,11 @@ class PaymentController extends Controller
  
     public function create()
     {
-        $fundActivity = FundActivity::where('type','Pledgeable')->where('status','1')->get();
+        $fundActivity = FundActivity::where('status','1')->get();
         $pledges = DB::table('vw_pledges_and_payments')->whereNotNull('pledge_id')->get();
-        $person = Person::select('id','first_name','middle_name','last_name','address')->where('status','1')->get();
-        $family = Family::select('id','name','address')->where('status','1')->get();
-        $group = Group::select('id','name')->get();
+        $person = Person::select('id','name','address')->where('status','1')->get();
         $paymentMethod = PaymentMethod::all();
-        return view('payments.create', compact("pledges","fundActivity","family","group","person","paymentMethod"));
+        return view('payments.create', compact("pledges","fundActivity","person","paymentMethod"));
     }
 
  
@@ -41,24 +39,13 @@ class PaymentController extends Controller
         // dd($request->all());
         $payment = new Payment;
 
-        if ($request->pledged == "1") { // Payment for non pledged
-            if ($request->pledger =="Person") {
-                $payment->person_id = $request->person_id;
-            }
-            if ($request->pledger =="Family") {
-                $payment->family_id = $request->family_id;
-            }
-            if ($request->pledger =="Group") {
-                $payment->group_id = $request->group_id;
-            }
+        if ($request->pledged == "1") { // Payment for non pledge
+            $payment->person_id = $request->person_id;
         }
 
         if ($request->pledged == "2") { // Payment for pledges
             $pledge = Pledge::find($request->pledge_id);
-            // dd($pledge);
             $payment->pledge_id = $request->pledge_id;
-            $payment->group_id = $pledge->group_id;
-            $payment->family_id = $pledge->family_id;
             $payment->person_id = $pledge->person_id;
         }
 
@@ -101,7 +88,9 @@ class PaymentController extends Controller
 
     public function getPledges(Request $request){
         $pledges = DB::table('vw_pledges_and_payments')
-                    ->where('activity_id',$request->activity_id)->orderByRaw('name')
+                    ->where('activity_id',$request->activity_id)
+                    ->where('pledge_id','>',0)
+                    ->orderByRaw('name')
                     ->get();
     
         $output = '<option value="">--Select Pledge--</option>';

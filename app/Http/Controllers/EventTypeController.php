@@ -21,7 +21,7 @@ class EventTypeController extends Controller
     
     public function store(Request $request)
     {
-// dd($request->all());
+
         $etype = new EventType;
   
         if ($request->occurance =="weekly") {
@@ -36,7 +36,6 @@ class EventTypeController extends Controller
         
         $etype->name= $request->name;
         $etype->occurance= $request->occurance;
-        $etype->start_time= date("h:i", strtotime( $request->start_time ));
         $etype->color= $request->color;
         $etype->save();
 
@@ -69,7 +68,6 @@ class EventTypeController extends Controller
 
         $eventType->name= $request->name;
         $eventType->occurance= $request->occurance;
-        $eventType->start_time= date("h:i", strtotime( $request->start_time ));
         $eventType->color= $request->color;
         $eventType->save();
 

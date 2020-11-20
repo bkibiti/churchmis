@@ -29,7 +29,6 @@ class FundActivityController extends Controller
  
     public function update(Request $request)
     {
-        // dd($request->all());
         $FundActivity = FundActivity::find($request->id);
         $FundActivity->fill($request->all());
         $FundActivity->save();

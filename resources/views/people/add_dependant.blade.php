@@ -30,7 +30,7 @@
                                 <label class="col-sm-4 col-form-label">Uhusiano <font color="red">*</font></label>
                                 <div class="col-sm-8">
                                 <select class="form-control select2" id="relation_id" name ="relation_id" required>
-                                    @foreach($relations as $p)
+                                    @foreach($allRelations as $p)
                                         <option value="{{ $p->id }}"}}>{{ $p->name  }}</option>
                                     @endforeach
                                 </select>

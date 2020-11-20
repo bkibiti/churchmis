@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">List of Pledges</h1>
+        <h1 class="m-0 text-dark">Orodha ya Ahadi</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Pledges / View Pledges</li>
+          <li class="breadcrumb-item active">Ahadi / Orododha ya Ahadi</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -29,7 +29,7 @@
         <div class="card-header">
           <a href="{{route('pledges.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Pledge
+                  Ingiza Ahadi
               </button>
           </a>
         </div>
@@ -38,20 +38,18 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Pledger Type</th>
-                    <th>Name</th>
-                    <th>Activity</th>
-                    <th>Pledge Date</th>
-                    <th>Amount</th>
-                    <th>Paid Amount</th>
-                    <th>Comments</th>
-                    <th>Action</th>
+                    <th>Jina la Masharika</th>
+                    <th>Aina ya Ahadi</th>
+                    <th>Tarehe ya Ahadi</th>
+                    <th>Kiasi Alichoahidi</th>
+                    <th>Kiasi Alicholipa</th>
+                    <th>Maelezo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($pledges as $p)
                 <tr>
-                  <td>{{$p->pledger}}</td>
                   <td>{{$p->name}}</td>
                   <td>{{$p->activity}}</td>
                   <td>{{myDateFormat($p->pledge_date)}}</td>
@@ -65,7 +63,7 @@
                         </span>
                     </a>
 
-                    <a href="#">
+                    {{-- <a href="#">
                         <button class="btn"
                                 data-id="{{$p->pledge_id}}" data-name=""
                                 type="button" data-toggle="modal" data-target="#delete">
@@ -73,7 +71,7 @@
                                   <i class="fas fa-trash"></i>
                                 </span>
                         </button>
-                    </a>
+                    </a> --}}
                   </td>
                 </tr>
               @endforeach

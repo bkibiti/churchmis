@@ -75,7 +75,7 @@ class EventController extends Controller
 
     public function calender()
     {
-        $bdays = Person::select(DB::raw('id,CONCAT_WS(" ",first_name,middle_name,last_name) name,MONTH(dob) month, DAY(dob) day'))
+        $bdays = Person::select(DB::raw('id,name,MONTH(dob) month, DAY(dob) day'))
                         ->whereNotNull('dob')->get();
         $anniversary = Family::select(DB::raw('id,name,MONTH(wedding_date) month, DAY(wedding_date) day'))
                         ->whereNotNull('wedding_date')->get();

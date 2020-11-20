@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Funding Activities</h1>
+        <h1 class="m-0 text-dark">Aina za Ahadi na Malipo</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Pledges / Funding Activities</li>
+          <li class="breadcrumb-item active">Ahadi</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -30,7 +30,7 @@
           <a href="#">
               <button class="btn btn-info float-right"
                       type="button" data-toggle="modal" data-target="#add">
-                      Add Activity
+                      Ongeza Aina
               </button>
           </a>
         </div>
@@ -39,18 +39,16 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Schedule</th>
+                    <th>Aina ya Ahadi</th>
+                    <th>Kipindi cha Ahadi</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
               @foreach ($fundActivity as $a)
               <tr>
                 <td>{{$a->name}}</td>
-                <td>{{$a->type}}</td>
                 <td>{{$a->schedule}}</td>
                 <td>
                   @if ($a->status =='1')

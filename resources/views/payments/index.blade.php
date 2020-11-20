@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">List of Payments</h1>
+        <h1 class="m-0 text-dark">Orodha ya Malipo</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Payments / View Payments</li>
+          <li class="breadcrumb-item active">Malipo / Orodha ya Malipo</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -29,7 +29,7 @@
         <div class="card-header">
           <a href="{{route('payments.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Payment
+                  Lipa
               </button>
           </a>
         </div>
@@ -38,20 +38,18 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Payer Type</th>
-                    <th>Name</th>
-                    <th>Activity</th>
-                    <th>Payment Date</th>
-                    <th>Amount</th>
-                    <th>Payment Method</th>
-                    <th>Comments</th>
-                    <th>Action</th>
+                    <th>Jina la Msharika</th>
+                    <th>Aina ya Malipo</th>
+                    <th>Tarehe ya Malipo</th>
+                    <th>Kiasi</th>
+                    <th>Jinsi ya Kulipia</th>
+                    <th>Maelezo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
               @foreach ($payments as $p)
                 <tr>
-                  <td>{{$p->pledger}}</td>
                   <td>{{$p->name}}</td>
                   <td>{{$p->activity}}</td>
                   <td>{{myDateFormat($p->pay_date)}}</td>

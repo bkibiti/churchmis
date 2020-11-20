@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark ">Update Pledge</h1>
+      <h1 class="m-0 text-dark ">Badilisha Ahadi</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
    
@@ -24,7 +24,7 @@
     <div class="col-md-12">
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Pledge Info</h3>
+          <h3 class="card-title">Taarifa ya Ahadi</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -33,23 +33,13 @@
           @method('put')
           <div class="card-body">
 
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Pledger Type<font color="red">*</font></label>
-              <div class="col-sm-4">
-                    <select class="form-control select2" id="pledger" name ="pledger" required>
-                        <option value="">Select Type</option>
-                        <option value="Person" {{ ($pledge->pledger == "Person" ? "selected":"") }}>Person</option>
-                        <option value="Family" {{ ($pledge->pledger == "Family" ? "selected":"") }}>Family</option>
-                        <option value="Group" {{ ($pledge->pledger == "Group" ? "selected":"") }}>Group</option>
-                  </select>
-              </div>
-            </div>
+  
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Activity<font color="red">*</font></label>
+              <label class="col-sm-2 col-form-label">Aina ya Ahadi<font color="red">*</font></label>
               <div class="col-sm-10">
                     <select class="form-control select2" id="activity_id" name ="activity_id" required>
-                        <option value="">Select Activity</option>
+                        <option value="">--Chagua--</option>
                       @foreach ($FundActivity as $a)
                         <option value={{$a->id}} {{ ($pledge->activity_id == $a->id ? "selected":"") }} >{{$a->name}}</option>
                       @endforeach
@@ -62,54 +52,26 @@
               <label class="col-sm-2 col-form-label">Person<font color="red">*</font></label>
               <div class="col-sm-10">
                   <select class="form-control select2" id="person_id" name ="person_id" >
-                      <option value="">--Select Person--</option>
+                      <option value="">--Chagua--</option>
                    
                       @foreach($person as $p)
                         @php
                             $address = '';
                             if ($p->address <> '') {
-                              $address =', from  '. $p->address;
+                              $address =', kutoka  '. $p->address;
                             }
                         @endphp
-                        <option value="{{ $p->id }}"}} {{ ($pledge->person_id == $a->id ? "selected":"") }}>{{ $p->first_name .' ' . $p->last_name .' '. $address  }}</option>
+                        <option value="{{ $p->id }}"}} {{ ($pledge->person_id == $p->id ? "selected":"") }}>{{ $p->name .' '. $address  }}</option>
                       @endforeach
                   </select>
               </div>
             </div>
 
-            <div class="form-group row" id="family">
-              <label class="col-sm-2 col-form-label">Family<font color="red">*</font></label>
-              <div class="col-sm-10">
-                  <select class="form-control select2" id="family_id" name ="family_id" >
-                      <option value="">--Select Family--</option>
-                      @foreach($family as $f)
-                        @php
-                          $address = '';
-                          if ($f->address <> '') {
-                            $address =', from  '. $f->address;
-                          }
-                        @endphp
-                        <option value="{{ $f->id }}"}} {{ ($pledge->family_id == $f->id ? "selected":"") }}>{{ $f->name . ' '. $address  }}</option>
-                      @endforeach
-                  </select>
-              </div>
 
-            </div>
-            <div class="form-group row" id="group">
-              <label class="col-sm-2 col-form-label">Group<font color="red">*</font></label>
-              <div class="col-sm-10">
-                  <select class="form-control select2" id="group_id" name ="group_id" >
-                      <option value="">--Select Group--</option>
-                      @foreach($group as $g)
-                        <option value="{{ $g->id }}"}} {{ ($pledge->group_id == $g->id ? "selected":"") }} >{{ $g->name }}</option>
-                      @endforeach
-                  </select>
-              </div>
-            </div>
 
             <div class="form-group row" >
          
-              <label class="col-sm-2 col-form-label">Pledge Date <font color="red">*</font></label>
+              <label class="col-sm-2 col-form-label">Tarehe ya Ahadi <font color="red">*</font></label>
               <div class="col-sm-4">
                 <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input" id='pledge_date' name='pledge_date' data-target="#datetimepicker1"/>
@@ -118,13 +80,13 @@
                   </div>
               </div>
               </div>
-                <label class="col-sm-2 col-form-label">Pledge Amount <font color="red">*</font></label>
+                <label class="col-sm-2 col-form-label">Kiasi<font color="red">*</font></label>
                   <div class="col-sm-4">
-                  <input type="number" class="form-control"  name="amount"  id="amount" value="{{$pledge->amount}}">
+                  <input type="number" class="form-control"  name="amount"  id="amount" value="{{$pledge->amount}}" required>
                   </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Comment</label>
+                <label class="col-sm-2 col-form-label">Maelezo</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control"  name="comment"  id="comment" value="{{$pledge->comment}}">
                 </div>
@@ -137,11 +99,17 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <button type="submit" class="btn btn-info float-right">Update</button>
-           
-            <a href="{{route('pledges.index')}}">
-              <button type="button" class="btn btn-danger ">Cancel</button>
-           </a>
+            <div class="form-group row">
+              <div class="col-sm-8"></div>
+              <div class="col-sm-2">
+                  <a href="{{ route('pledges.index') }}">
+                      <button type="button" class="btn btn-danger btn-block">Rudi Nyuma</button>
+                  </a>
+              </div>
+              <div class="col-sm-2">
+                  <button type="submit" class="btn btn-success float-right btn-block">Hifadhi</button>
+              </div>
+          </div>
           </div>
           <!-- /.card-footer -->
         </form>
@@ -160,23 +128,7 @@
 @include('partials.notification')
 
 <script>
-        if ("{{$pledge->pledger}}"== 'Person') {
-          $('#person').show();
-          $('#family').hide();
-          $('#group').hide();
-        }
-
-        if ("{{$pledge->pledger}}" == 'Family') {
-          $('#person').hide();
-          $('#family').show();
-          $('#group').hide();
-        }
-        if ("{{$pledge->pledger}}" == 'Group') {
-          $('#person').hide();
-          $('#family').hide();
-          $('#group').show();
-        }
-  
+   
 
     $(document).ready(function(){
         $('.select2').select2()
@@ -191,47 +143,7 @@
         });
     });
  
-    $('#pledger').on('select2:selecting', function(e) {
-        var id = e.params.args.data.id;
-        if (id == 'Person') {
-          $('#person_id').prop('required',true);
-          $('#family_id').prop('required',false);
-          $('#group_id').prop('required',false);
-          $("#group_id option:selected").prop("selected", false);
-          $("#person_id option:selected").prop("selected", false);
-          $("#family_id option:selected").prop("selected", false);
-          $('#person').show();
-          $('#family').hide();
-          $('#group').hide();
-        }
-
-        if (id == 'Family') {
-          $('#person_id').prop('required',false);
-          $('#family_id').prop('required',true);
-          $('#group_id').prop('required',false);
-          $("#group_id option:selected").prop("selected", false);
-          $("#person_id option:selected").prop("selected", false);
-          $("#family_id option:selected").prop("selected", false);
-          $('#person').hide();
-          $('#family').show();
-          $('#group').hide();
-        }
-        if (id == 'Group') {
-          $('#person_id').prop('required',false);
-          $('#family_id').prop('required',false);
-          $('#group_id').prop('required',true);
-          $("#group_id option:selected").prop("selected", false);
-          $("#person_id option:selected").prop("selected", false);
-          $("#family_id option:selected").prop("selected", false);
-          $('#person').hide();
-          $('#family').hide();
-          $('#group').show();
-        }
   
-  
-     });
-
-
 
 
 

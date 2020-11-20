@@ -26,31 +26,19 @@ class PledgeController extends Controller
    
     public function create()
     {
-        $FundActivity = FundActivity::where('type','Pledgeable')->where('status','1')->get();
-        $person = Person::select('id','first_name','middle_name','last_name','address')->where('status','1')->get();
-        $family = Family::select('id','name','address')->where('status','1')->get();
-        $group = Group::select('id','name')->get();
+        $FundActivity = FundActivity::where('status','1')->get();
+        $person = Person::select('id','name','address')->where('status','1')->get();
 
-        return view('pledges.create', compact("FundActivity","person","family","group"));
+        return view('pledges.create', compact("FundActivity","person"));
     }
 
    
     public function store(Request $request)
     {
+// dd($request->all());
         $pledge = new Pledge;
-
-        if ($request->pledger =="Person") {
-            $pledge->person_id = $request->person_id;
-        }
-        if ($request->pledger =="Family") {
-            $pledge->family_id = $request->family_id;
-        }
-        if ($request->pledger =="Group") {
-            $pledge->group_id = $request->group_id;
-        }
-
         $pledge->activity_id = $request->activity_id;
-        $pledge->pledger = $request->pledger;
+        $pledge->person_id = $request->person_id;
         $pledge->pledge_date = toDbDateFormat($request->pledge_date);
         $pledge->amount = $request->amount;
         $pledge->comment = $request->comment;
@@ -71,29 +59,18 @@ class PledgeController extends Controller
 
     public function edit(Pledge $pledge)
     {
-        $FundActivity = FundActivity::where('type','Pledgeable')->where('status','1')->get();
-        $person = Person::select('id','first_name','middle_name','last_name','address')->where('status','1')->get();
-        $family = Family::select('id','name','address')->where('status','1')->get();
-        $group = Group::select('id','name')->get();
-
-        return view('pledges.edit', compact("FundActivity","person","family","group","pledge"));
+        $FundActivity = FundActivity::where('status','1')->get();
+        $person = Person::select('id','name','address')->where('status','1')->get();
+      
+        return view('pledges.edit', compact("FundActivity","person","pledge"));
     }
 
 
     public function update(Request $request, Pledge $pledge)
     {
-        if ($request->pledger =="Person") {
-            $pledge->person_id = $request->person_id;
-        }
-        if ($request->pledger =="Family") {
-            $pledge->family_id = $request->family_id;
-        }
-        if ($request->pledger =="Group") {
-            $pledge->group_id = $request->group_id;
-        }
 
         $pledge->activity_id = $request->activity_id;
-        $pledge->pledger = $request->pledger;
+        $pledge->person_id = $request->person_id;
         $pledge->pledge_date = toDbDateFormat($request->pledge_date);
         $pledge->amount = $request->amount;
         $pledge->comment = $request->comment;

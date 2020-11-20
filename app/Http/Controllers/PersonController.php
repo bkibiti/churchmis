@@ -27,9 +27,9 @@ class PersonController extends Controller
         $position = PersonPosition::all();
         $members = Person::select('id','name','position_id','gender')->get();
         $service = Service::all();
-        $relations = PersonRelations::all();
+        $allRelations = PersonRelations::all();
 
-        return view('people.create',compact('position','members','service','relations'));
+        return view('people.create',compact('position','members','service','allRelations'));
     }
 
    
@@ -75,7 +75,6 @@ class PersonController extends Controller
             $relations['K'.$dep->dependant_id] = $dep->relation_id;
         }
 
-        getPersonServices($person->services);
         $members = Person::whereIn('id',$dependants)->get();
         $allRelations = PersonRelations::all();
 
@@ -85,10 +84,21 @@ class PersonController extends Controller
    
     public function edit(Person $person)
     {
+        $dependants = [];
+        $relations = []; //relation of dependants
+
+        foreach ($person->dependats as $dep) {
+            array_push($dependants,$dep->dependant_id);
+            $relations[$dep->dependant_id] = $dep->relation_id;
+        }
+
         $position = PersonPosition::all();
-        $members = Person::select('id','name','position_id','gender')->get();
+        $dependants = Person::whereIn('id',$dependants)->get();
         $service = Service::all();
-        return view('people.edit',compact('position','members','service','person'));
+        $allRelations = PersonRelations::all();
+        $members = Person::select('id','name','position_id','gender')->get();
+
+        return view('people.edit',compact('position','dependants','service','person','allRelations','relations','members'));
     }
 
  

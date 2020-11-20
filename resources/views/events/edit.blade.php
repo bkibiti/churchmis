@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark ">Update Event</h1>
+      <h1 class="m-0 text-dark ">Badilisha Tukio</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
    
@@ -24,7 +24,7 @@
     <div class="col-md-12">
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Event Info</h3>
+          <h3 class="card-title">Taarifa za Tukio</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -34,7 +34,7 @@
           <div class="card-body">
        
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Event Type<font color="red">*</font></label>
+              <label class="col-sm-2 col-form-label">Aina ya Tukio<font color="red">*</font></label>
               <div class="col-sm-10">
                     <select class="form-control select2" id="type_id" name ="type_id" required>
                         <option value="">Select Event Type</option>
@@ -45,14 +45,14 @@
               </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Event Title <font color="red">*</font></label>
+                <label class="col-sm-2 col-form-label">Tukio <font color="red">*</font></label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control"  name="title"  id="title" value="{{$event->title}}" required >
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Event Description <font color="red">*</font></label>
+                <label class="col-sm-2 col-form-label">Maelezo ya Tukio <font color="red">*</font></label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control"  name="description"  id="description" value="{{$event->description}}" required>
                 </div>
@@ -60,7 +60,7 @@
 
      
           <div class="form-group row" >
-            <label class="col-sm-2 col-form-label">Event Start Date</label>
+            <label class="col-sm-2 col-form-label">Kuanza</label>
             <div class="col-sm-4">
                 <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                   <input type="text" class="form-control datetimepicker-input"  id="start", name="start" value="{{$event->start}}" data-target="#datetimepicker2"/>
@@ -69,7 +69,7 @@
                   </div>
               </div>
             </div>
-            <label class="col-sm-2 col-form-label">End Date</label>
+            <label class="col-sm-2 col-form-label">Kumaliza</label>
             <div class="col-sm-4">
               <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                 <input type="text" class="form-control datetimepicker-input" id='end' name='end' value="{{$event->end}}" data-target="#datetimepicker1"/>
@@ -80,27 +80,27 @@
             </div>
           </div>
           <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Event Location<font color="red">*</font></label>
+              <label class="col-sm-2 col-form-label">Eneo la Tukio</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control"  name="location"  id="location" value="{{$event->location}}" required>
+                <input type="text" class="form-control"  name="location"  id="location" value="{{$event->location}}" >
               </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Contact Person 1</label>
+            <label class="col-sm-2 col-form-label">Mtu wa Mawasiliano 1</label>
             <div class="col-sm-4">
               <input type="text" class="form-control"  name="contact_person"  id="contact_person" value="{{$event->contact_person}}" >
             </div>
-            <label class="col-sm-2 col-form-label">Mobile</label>
+            <label class="col-sm-2 col-form-label">Namba ya Simu<</label>
             <div class="col-sm-4">
               <input type="text" class="form-control"  name="mobile"  id="mobile" value="{{$event->mobile}}" >
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Contact Person 2</label>
+            <label class="col-sm-2 col-form-label">Mtu wa Mawasiliano 2</label>
             <div class="col-sm-4">
               <input type="text" class="form-control"  name="alt_contact_person"  id="alt_contact_person" value="{{$event->alt_contact_person}}">
             </div>
-            <label class="col-sm-2 col-form-label">Mobile</label>
+            <label class="col-sm-2 col-form-label">Namba ya Simu</label>
             <div class="col-sm-4">
               <input type="text" class="form-control"  name="alt_mobile"  id="alt_mobile" value="{{$event->alt_mobile}}" >
             </div>
@@ -109,11 +109,17 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
-            <button type="submit" class="btn btn-info float-right">Update</button>
-           
-            <a href="{{route('events.index')}}">
-              <button type="button" class="btn btn-danger ">Cancel</button>
-           </a>
+            <div class="form-group row">
+              <div class="col-sm-8"></div>
+              <div class="col-sm-2">
+                  <a href="{{ route('events.index') }}">
+                      <button type="button" class="btn btn-danger btn-block">Rudi Nyuma</button>
+                  </a>
+              </div>
+              <div class="col-sm-2">
+                  <button type="submit" class="btn btn-success float-right btn-block">Hifadhi</button>
+              </div>
+          </div>
           </div>
           <!-- /.card-footer -->
         </form>

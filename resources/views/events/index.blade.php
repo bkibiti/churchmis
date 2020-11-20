@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Church Events</h1>
+        <h1 class="m-0 text-dark">Orodha ya Matukio</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Events</li>
+          <li class="breadcrumb-item active">Matukio</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -29,7 +29,7 @@
         <div class="card-header">
           <a href="{{route('events.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Event
+                  Ongeza Tukio
               </button>
           </a>
         </div>
@@ -38,11 +38,11 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Event Type</th>
-                    <th>Event Title</th>
-                    <th>Description</th>
-                    <th>Event Start</th>
-                    <th>Event End</th>
+                    <th>Aina ya Tukio</th>
+                    <th>Tukio</th>
+                    <th>Maelezo ya Tukio</th>
+                    <th>Kuanza</th>
+                    <th>Kumaliza</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>

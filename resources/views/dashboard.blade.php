@@ -27,7 +27,7 @@
                     <div class="inner">
                         <h3>{{ $personCount[0]->count + $personCount[1]->count }}</h3>
 
-                        <p>Washarika {{ '(Me ' . $personCount[1]->count . '/Ke ' . $personCount[0]->count . ')' }}</p>
+                        <p>Washarika {{ '(Me ' . $personCount[1]->count . ', Ke ' . $personCount[0]->count . ')' }}</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -40,14 +40,14 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>{{ $familyCount }}</h3>
+                        <h3>{{ $dependants[0]->total + $dependants[1]->total }}</h3>
 
-                        <p>Familia</p>
+                        <p>Wategemezi na Watoto {{ '(Me ' . $dependants[1]->total . ', Ke ' . $dependants[0]->total . ')' }}</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="{{ route('family.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -88,7 +88,7 @@
             <div class="col-md-6">
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> Church Members Classification</h3>
+                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> Idadi ya Washarika kwa Nafasi</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
@@ -97,9 +97,9 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <label class="col-lg-5">Classification </label>
-                            <label class="col-lg-5">% of People </label>
-                            <label class="col-lg-2">Count </label>
+                            <label class="col-lg-5">Nafasi </label>
+                            <label class="col-lg-5">Asilimia (%) </label>
+                            <label class="col-lg-2">Idadi </label>
                         </div>
 
                         @foreach ($classification as $c)
@@ -124,7 +124,7 @@
             <div class="col-md-6">
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title"> <i class="fas fa-chart-bar"></i> Idadi ya Washirika kwa Umri</h3>
+                        <h3 class="card-title"> <i class="fas fa-chart-bar"></i> Idadi ya Washarika kwa Umri</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>

@@ -24,7 +24,6 @@ class HomeController extends Controller
         $personCount = Person::groupBy('gender')->selectRaw('gender,count(*) as count')->orderBy('gender')->get();
         //  dd($personCount[1]->count);
         
-        $familyCount = Family::count();
         $groupCount = Service::count();
         $upcoming = Event::whereDate('start', '>', Carbon::now())->count();
         $ongoing = Event::whereDate('start', '<', Carbon::now())->whereDate('end', '>', Carbon::now())->count();
@@ -33,6 +32,11 @@ class HomeController extends Controller
         $classification = DB::select("SELECT cl.name,count(persons.id) total FROM persons 
         JOIN person_position cl ON cl.id = position_id
         GROUP BY position_id");
+
+        $dependants = DB::select("SELECT p.gender,count(p.id) total FROM person_dependants d
+        JOIN persons p on p.id = d.dependant_id
+        GROUP BY p.gender ORDER BY gender");
+
 
         $ageCategory = DB::select("SELECT gender,
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) < 10,1,0)) as '0 - 9',
@@ -46,6 +50,6 @@ class HomeController extends Controller
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) >=80, 1, 0)) as '80 - 99'
             FROM persons group by gender order by gender");
 
-        return view('dashboard',compact("personCount","familyCount","groupCount","event","classification","ageCategory"));
+        return view('dashboard',compact("personCount","groupCount","event","classification","ageCategory","dependants"));
     }
 }

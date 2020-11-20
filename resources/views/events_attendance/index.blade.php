@@ -8,12 +8,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">Events Attendance</h1>
+        <h1 class="m-0 text-dark">Mahududhurio</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Events Attendance</li>
+          <li class="breadcrumb-item active">Mahududhurio</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -29,7 +29,7 @@
         <div class="card-header">
           <a href="{{route('events-attendance.create')}}">
               <button type="button" class="btn btn-info float-right">
-                  Add Event Attendance
+                  Ingiza Mahudhurio
               </button>
           </a>
         </div>
@@ -38,14 +38,12 @@
           <table id="mydatatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Event</th>
-                    <th>Event Start</th>
-                    <th>Event End</th>
-                    <th>Attendance Date</th>
-                    <th>Male</th>
-                    <th>Female</th>
-                    <th>Children</th>
-                    <th>Total</th>
+                    <th>Tukio</th>
+                    <th>Tarehe</th>
+                    <th>Wanaume</th>
+                    <th>Wanawake</th>
+                    <th>Watoto</th>
+                    <th>Jumla</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -54,8 +52,6 @@
               @foreach ($e->attendance as $a)
                   <tr>
                     <td>{{$e->title}}</td>
-                    <td>{{myDateTimeFormat($e->start)}}</td>
-                    <td>{{myDateTimeFormat($e->end)}}</td>
                     <td>{{myDateFormat($a->date)}}</td>
                     <td>{{$a->male}}</td>
                     <td>{{$a->female}}</td>

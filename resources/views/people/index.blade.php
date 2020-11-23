@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Orodha ya Washirika</h1>
+                <h1 class="m-0 text-dark">  {{ __('menu.memberslist')}}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Nyumbani</a></li>
-                    <li class="breadcrumb-item active">Washirika</li>
+                    <li class="breadcrumb-item"><a href="#">  {{ __('menu.home')}}</a></li>
+                    <li class="breadcrumb-item active">  {{ __('menu.members')}}</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -38,7 +38,7 @@
                     <div class="card-header">
                         <a href="{{ route('people.create') }}">
                             <button type="button" class="btn btn-info float-right">
-                                Ongeza Msharika
+                                {{ __('menu.addmember')}}
                             </button>
                         </a>
                     </div>
@@ -47,11 +47,11 @@
                         <table id="mydatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Jina</th>
-                                    <th>Jinsia</th>
-                                    <th>Anuani</th>
-                                    <th>Simu</th>
-                                    <th>Eneo la Makazi</th>
+                                    <th> {{ __('msg.name2')}}</th>
+                                    <th>{{ __('msg.gender')}}</th>
+                                    <th>{{ __('msg.address')}}</th>
+                                    <th>{{ __('msg.phone')}}</th>
+                                    <th>{{ __('msg.arearesidential')}}</th>
                                     <th></th>
                                 </tr>
                             </thead>

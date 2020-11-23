@@ -8,7 +8,7 @@
         <a href="{{route('home')}}" class="nav-link">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>
-            Dashboard
+            {{ __('menu.dashboard')}}
           </p>
         </a>
       </li>
@@ -25,7 +25,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-user-friends"></i>
           <p>
-            Washarika
+            {{ __('menu.members')}}
             <i class="fas fa-angle-left right"></i>
             
           </p>
@@ -34,13 +34,13 @@
           <li class="nav-item">
           <a href="{{route('people.create')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Ongeza Msharika</p>
+              <p>{{ __('menu.newmember')}}</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('people.index')}}" class="nav-link">
                 <i class="fas fa-angle-double-right"></i>
-                <p>Orodha ya Washarika</p>
+                <p>{{ __('menu.memberslist')}}</p>
               </a>
           </li>
       
@@ -52,21 +52,21 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users"></i>
           <p>
-            Vikundi
+            {{ __('menu.groups')}}
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('services.create')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Ongeza Kikundi</p>
+              <p> {{ __('menu.newgroup')}}</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('services.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Orodha ya Vikundi</p>
+              <p>{{ __('menu.grouplist')}}</p>
             </a>
           </li>
         
@@ -76,7 +76,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-calendar-alt"></i>
           <p>
-            Matukio
+            {{ __('menu.events')}}
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -84,19 +84,19 @@
           <li class="nav-item">
           <a href="{{route('event-types.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Aina ya Matukio</p>
+              <p>{{ __('menu.eventtype')}}</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('events.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Orodha ya Matukio</p>
+              <p>{{ __('menu.eventlist')}}</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('events-attendance.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Mahudhurio</p>
+            <p>{{__('menu.attendance')}}</p>
             </a>
           </li>
       </ul>
@@ -113,13 +113,13 @@
           <li class="nav-item">
           <a href="{{route('fund-activities.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Aina za Ahadi</p>
+              <p>{{ __('menu.pledgetype')}}</p>
             </a>
           </li>
           <li class="nav-item">
           <a href="{{route('pledges.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Orodha ya Ahadi</p>
+              <p>{{ __('menu.pledgelist')}}</p>
             </a>
           </li>
         </ul>
@@ -128,7 +128,7 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-credit-card"></i>
           <p>
-            Malipo
+            {{ __('menu.payment')}}
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
@@ -136,13 +136,13 @@
           <li class="nav-item">
             <a href="{{route('payments.create')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Fanya Malipo</p>
+              <p>{{ __('menu.enterpayment')}}</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('payments.index')}}" class="nav-link">
               <i class="fas fa-angle-double-right"></i>
-              <p>Tazama Malipo</p>
+              <p>{{ __('menu.paymentlist')}}</p>
             </a>
           </li>
         </ul>

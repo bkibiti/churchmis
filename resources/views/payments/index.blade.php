@@ -72,6 +72,7 @@
                                 </span>
                         </button>
                     </a>
+                    
                   </td>
                 </tr>
               @endforeach

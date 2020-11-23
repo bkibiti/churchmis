@@ -428,11 +428,11 @@
                                 <div class="col-sm-8"></div>
                                 <div class="col-sm-2">
                                     <a href="{{ route('people.index') }}">
-                                        <button type="button" class="btn btn-danger btn-block">Rudi Nyuma</button>
+                                        <button type="button" class="btn btn-danger btn-block">{{ __('msg.back')}}</button>
                                     </a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-success float-right btn-block">Hifadhi</button>
+                                    <button type="submit" class="btn btn-success float-right btn-block">{{ __('msg.save')}}</button>
                                 </div>
                             </div>
                         </div>

@@ -36,7 +36,7 @@
               <label class="col-sm-2 col-form-label">Tukio<font color="red">*</font></label>
               <div class="col-sm-10">
                     <select class="form-control select2" id="event_id" name ="event_id" required>
-                        <option value="">--Changua--</option>
+                        <option value="">--Chagua--</option>
                       @foreach ($event as $e)
                         <option value={{$e->id}} >{{$e->title}}</option>
                       @endforeach

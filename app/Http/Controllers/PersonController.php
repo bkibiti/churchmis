@@ -35,7 +35,7 @@ class PersonController extends Controller
    
     public function store(StorePersonRequest $request)
     {
-        //  dd($request->all());
+      
         $person = new Person;
         $person->fill($request->all());
         $person->dob = toDbDateFormat($request->dob);
@@ -114,6 +114,17 @@ class PersonController extends Controller
         $person->status = 1;
         $person->updated_by = Auth::user()->id;
         $person->save();
+        
+        $dependantsIds = json_decode($request->dependant_ids,true);
+        $relationIds = json_decode($request->relation_ids,true);
+
+        for($i= 0; $i < count($dependantsIds); $i++){
+            $dependants = new PersonDependant;
+            $dependants->person_id= $person->id;
+            $dependants->dependant_id= $dependantsIds[$i];
+            $dependants->relation_id= $relationIds[$i];
+            $dependants->save();
+        }
         
         session()->flash("alert-success", "Record Updated Successfully!");
         return redirect()->route('people.index');

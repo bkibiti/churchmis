@@ -46,4 +46,10 @@ return[
     'phone' => 'Simu',
     'save' => 'Hifadhi',
     'back' => 'Rudi Nyuma',
+    'select' => 'Chagua',
+    'memberinfo' => 'Taarifa za Msharika',
+    'personalinfo' => 'Taarifa Binafsi',
+    'attendancedash' =>'Mahudhurio ya Matukio',
+
+
 ];

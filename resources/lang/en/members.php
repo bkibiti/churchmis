@@ -46,6 +46,9 @@ return[
     'phone' => 'Phone',
     'save' => 'Save',	
     'back' => 'Back',	
-    
+    'select' => 'Select',
+    'memberinfo' => 'Member Information',
+    'personalinfo' => 'Personal Information',
+    'attendancedash' =>'Events Attendance',
 
 ];

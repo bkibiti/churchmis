@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">{{ __('menu.dashboard')}}</h1>
+                <h1 class="m-0 text-dark">{{ __('menu.dashboard') }}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">{{ __('menu.home')}}</a></li>
-                    <li class="breadcrumb-item active">{{ __('menu.dashboard')}}</li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('menu.home') }}</a></li>
+                    <li class="breadcrumb-item active">{{ __('menu.dashboard') }}</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,7 +32,7 @@
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="{{ route('people.index') }}" class="small-box-footer">{{ __('menu.moreinfo')}} <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('people.index') }}" class="small-box-footer">{{ __('menu.moreinfo') }} <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -42,12 +42,12 @@
                     <div class="inner">
                         <h3>{{ $dependants[0]->total + $dependants[1]->total }}</h3>
 
-                        <p>{{ __('menu.dependents')}} {{ '(Me ' . $dependants[1]->total . ', Ke ' . $dependants[0]->total . ')' }}</p>
+                        <p>{{ __('menu.dependents') }} {{ '(Me ' . $dependants[1]->total . ', Ke ' . $dependants[0]->total . ')' }}</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="" class="small-box-footer">{{ __('menu.moreinfo')}} <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="" class="small-box-footer">{{ __('menu.moreinfo') }} <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -57,12 +57,12 @@
                     <div class="inner">
                         <h3>{{ $groupCount }}</h3>
 
-                        <p>{{ __('menu.groups')}}</p>
+                        <p>{{ __('menu.groups') }}</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="{{ route('services.index') }}" class="small-box-footer">{{ __('menu.moreinfo')}} <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('services.index') }}" class="small-box-footer">{{ __('menu.moreinfo') }} <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -72,12 +72,12 @@
                     <div class="inner">
                         <h3>{{ $event }}</h3>
 
-                        <p>{{ __('menu.events')}} </p>
+                        <p>{{ __('menu.events') }} </p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="{{ route('events.index') }}" class="small-box-footer">{{ __('menu.moreinfo')}} <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{ route('events.index') }}" class="small-box-footer">{{ __('menu.moreinfo') }} <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -88,7 +88,7 @@
             <div class="col-md-6">
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> {{ __('menu.memberpos')}}</h3>
+                        <h3 class="card-title"><i class="fas fa-chart-bar"></i> {{ __('menu.memberpos') }}</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                             </button>
@@ -124,7 +124,7 @@
             <div class="col-md-6">
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title"> <i class="fas fa-chart-bar"></i>  {{ __('menu.memberage')}}</h3>
+                        <h3 class="card-title"> <i class="fas fa-chart-bar"></i> {{ __('menu.memberage') }}</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -141,6 +141,27 @@
                 <!-- /.card -->
             </div>
 
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title"> <i class="fas fa-chart-bar"></i> {{ __('members.attendancedash') }}</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="attendancetrend" style="min-height: 250px; height: 250px;   max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
         </div>
 
 
@@ -215,5 +236,73 @@
         })
 
     </script>
+    <script>
+        var attendance = @json($attendance);
+     
+        datasets = [];
+        labels = [];
+
+        for (line = 1; line < 4; line++) {
+            pointset = {};
+            pointset.backgroundColor = 'transparent';
+            pointset.borderColor = getRandomColor();
+            pointset.pointBorderColor = getRandomColor();
+            pointset.pointBackgroundColor = getRandomColor();
+            pointset.fill = false;
+            data = [];
+
+            $.each(@json($attendance), function(key, value) {
+                if (line == value.id) {
+                    pointset.label = value.title;
+                    data.push(value.total);
+                    if ($.inArray(value.date, labels) < 0) {
+                        labels.push(value.date)
+                    }
+
+                }
+            });
+            if (data.length) {
+                pointset.data = data;
+                pointset.labels = labels;
+                datasets.push(pointset);
+            }
+
+            
+        }
+        var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+
+            }
+        };
+  
+
+        var $attendanceChart = $('#attendancetrend')
+
+        var attendanceChart = new Chart($attendanceChart, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: datasets
+            },
+            options: chartOptions
+        });
+
+    
+
+
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+
 
 @endpush

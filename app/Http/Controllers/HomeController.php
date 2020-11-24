@@ -50,6 +50,10 @@ class HomeController extends Controller
             SUM(IF(TIMESTAMPDIFF(YEAR, dob, CURDATE()) >=80, 1, 0)) as '80 - 99'
             FROM persons group by gender order by gender");
 
-        return view('dashboard',compact("personCount","groupCount","event","classification","ageCategory","dependants"));
+        $attendance = DB::select("SELECT t.date,e.id, title, (t.male + t.female + t.children) total FROM events e
+        JOIN event_attendace_totals t ON e.id=t.event_id
+        ORDER BY date");
+
+        return view('dashboard',compact("personCount","groupCount","event","classification","ageCategory","dependants","attendance"));
     }
 }

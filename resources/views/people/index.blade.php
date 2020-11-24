@@ -47,11 +47,11 @@
                         <table id="mydatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th> {{ __('msg.name2')}}</th>
-                                    <th>{{ __('msg.gender')}}</th>
-                                    <th>{{ __('msg.address')}}</th>
-                                    <th>{{ __('msg.phone')}}</th>
-                                    <th>{{ __('msg.arearesidential')}}</th>
+                                    <th> {{ __('members.name2')}}</th>
+                                    <th>{{ __('members.gender')}}</th>
+                                    <th>{{ __('members.address')}}</th>
+                                    <th>{{ __('members.phone')}}</th>
+                                    <th>{{ __('members.arearesidential')}}</th>
                                     <th></th>
                                 </tr>
                             </thead>

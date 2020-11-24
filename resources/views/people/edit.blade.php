@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark ">Badilisha Taarifa za Msharika</h1>
+                <h1 class="m-0 text-dark ">{{ __('members.memberinfo')}}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
 
@@ -29,7 +29,7 @@
 
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="card-title">Taarifa Binafsi</h3>
+                            <h3 class="card-title">{{ __('members.personalinfo')}}</h3>
                         </div>
                         <!-- /.card-header -->
 
@@ -44,7 +44,7 @@
                                 <label class="col-sm-2 col-form-label">Jinsi (Me/Ke) <font color="red">*</font></label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="gender" name="gender" required>
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Me" {{ $person->gender == 'Me' ? 'selected' : '' }}>Mwanaume</option>
                                         <option value="Ke" {{ $person->gender == 'Ke' ? 'selected' : '' }}>Mwanamke</option>
                                     </select>
@@ -72,7 +72,7 @@
                                 <label class="col-sm-2 col-form-label">Hali ya Ndoa</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="marriage_status" name="marriage_status">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Ameoa" {{ $person->marriage_status == 'Ameoa' ? 'selected' : '' }}>Ameoa</option>
                                         <option value="Hajaoa" {{ $person->marriage_status == 'Hajaoa' ? 'selected' : '' }}> Hajaoa</option>
                                         <option value="Ameolewa" {{ $person->marriage_status == 'Ameolewa' ? 'selected' : '' }}> Ameolewa</option>
@@ -88,7 +88,7 @@
                                 <label class="col-sm-2 col-form-label">Aina ya Ndoa</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="marriage_type" name="marriage_type">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Kikristo" {{ $person->marriage_status == 'Kikristo' ? 'selected' : '' }}>
                                             Kikristo</option>
                                         <option value="SioKikristo" {{ $person->marriage_status == 'SioKikristo' ? 'selected' : '' }}>Sio Kikristo
@@ -201,7 +201,7 @@
                                 <label class="col-sm-2 col-form-label">Msharika Jirani</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="neighbour" name="neighbour">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         @foreach ($members as $m)
                                             <option value={{ $m->id }} {{ $person->neighbour == $m->id ? 'selected' : '' }}> {{ $m->name }}</option>
                                         @endforeach
@@ -210,7 +210,7 @@
                                 <label class="col-sm-2 col-form-label">Jina la Mzee wa Kanisa</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="church_elder" name="church_elder">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         @foreach ($members as $e)
                                             @if ($e->position_id == 2)
                                                 <option value={{ $e->id }} {{ $person->church_elder == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
@@ -254,7 +254,7 @@
                                 <label class="col-sm-3 col-form-label">Kujitolea Kutumika Kanisani</label>
                                 <div class="col-sm-3">
                                     <select class="form-control select2" id="volunteer" name="volunteer">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Hapana" {{ $person->volunteer == 'Kikristo' ? 'selected' : '' }}> Ndiyo</option>
                                         <option value="Ndiyo" {{ $person->volunteer == 'SioKikristo' ? 'selected' : '' }}>Hapana </option>
                                     </select>
@@ -273,7 +273,7 @@
                                 <label class="col-sm-2 col-form-label">Ubatizo</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="baptised" name="baptised">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Hapana" {{ $person->baptised == 'Hapana' ? 'selected' : '' }}> Ndiyo
                                         </option>
                                         <option value="Ndiyo" {{ $person->baptised == 'Ndiyo' ? 'selected' : '' }}>Hapana
@@ -297,7 +297,7 @@
                                 <label class="col-sm-2 col-form-label">Kipaimara</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="confirmation" name="confirmation">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Hapana" {{ $person->confirmation == 'Hapana' ? 'selected' : '' }}>Ndiyo
                                         </option>
                                         <option value="Ndiyo" {{ $person->confirmation == 'Ndiyo' ? 'selected' : '' }}>Hapana
@@ -320,7 +320,7 @@
                                 <label class="col-sm-4 col-form-label">Anashiriki Sakramenti ya Meza ya Bwana</label>
                                 <div class="col-sm-2">
                                     <select class="form-control select2" id="eucharist" name="eucharist">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Hapana" {{ $person->eucharist == 'Hapana' ? 'selected' : '' }}> Ndiyo
                                         </option>
                                         <option value="Ndiyo" {{ $person->eucharist == 'Ndiyo' ? 'selected' : '' }}>Hapana
@@ -330,7 +330,7 @@
                                 <label class="col-sm-2 col-form-label">Nafasi katika Usharika</label>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="position_id" name="position_id">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         @foreach ($position as $e)
                                             <option value={{ $e->id }} {{ $person->position_id == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
                                         @endforeach
@@ -350,7 +350,7 @@
                                 <label class="col-sm-4 col-form-label">Anashiriki Ibada ya Nyumba kwa Nyumba</label>
                                 <div class="col-sm-2">
                                     <select class="form-control select2" id="active_community_prayers" name="active_community_prayers">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         <option value="Hapana" {{ $person->active_community_prayers == 'Hapana' ? 'selected' : '' }}> Ndiyo
                                         </option>
                                         <option value="Ndiyo" {{ $person->active_community_prayers == 'Ndiyo' ? 'selected' : '' }}>Hapana
@@ -360,7 +360,7 @@
                                 <label class="col-sm-3 col-form-label">Jina la Nyumba kwa Nyumba</label>
                                 <div class="col-sm-3">
                                     <select class="form-control select2" id="community_name" name="community_name">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
 
                                     </select>
                                 </div>
@@ -379,7 +379,7 @@
                                 <label class="col-sm-4 col-form-label">Jina la Mwenyekiti wa Nyumba kwa Nyumba</label>
                                 <div class="col-sm-8">
                                     <select class="form-control select2" id="community_leader" name="community_leader">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         @foreach ($members as $m)
                                             @if ($m->position_id == 3)
                                                 <option value={{ $m->id }} {{ $person->community_leader == $m->id ? 'selected' : '' }}> {{ $m->name }}</option>
@@ -395,7 +395,7 @@
                                 <label class="col-sm-4 col-form-label">Huduma Usharikani</label>
                                 <div class="col-sm-8">
                                     <select class="form-control select2" multiple="multiple" id="services" name="services[]">
-                                        <option value="">--Chagua--</option>
+                                        <option value="">--{{ __('members.select')}}--</option>
                                         @foreach ($service as $g)
                                             <option value={{ $g->id }} {{ in_array($g->id, $services) ? 'selected' : '' }}> {{ $g->name }}</option>
                                         @endforeach
@@ -431,11 +431,11 @@
                                 <div class="col-sm-8"></div>
                                 <div class="col-sm-2">
                                     <a href="{{ route('people.index') }}">
-                                        <button type="button" class="btn btn-danger btn-block">Rudi Nyuma</button>
+                                        <button type="button" class="btn btn-danger btn-block">{{ __('members.back')}}</button>
                                     </a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-success float-right btn-block">Hifadhi</button>
+                                    <button type="submit" class="btn btn-success float-right btn-block">{{ __('members.save')}}</button>
                                 </div>
                             </div>
                         </div>

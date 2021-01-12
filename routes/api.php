@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('pledges/{member_id}', 'Api\PledgesController@show');
+Route::post('pledges', 'Api\PledgesController@store');
+Route::get('pledge-types', 'Api\PledgesController@pledgeTypes');
+
+Route::get('payments/{member_id}', 'Api\PaymentsController@show');
+
+Route::get('member/{member_id}', 'Api\MemberController@show');

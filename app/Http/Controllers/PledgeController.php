@@ -16,14 +16,11 @@ class PledgeController extends Controller
   
     public function index()
     {
-        // DB::enableQueryLog();//enable query logging
-        // dd(DB::getQueryLog());//print sql query
-
         $pledges = DB::table('vw_pledges_and_payments')->whereNotNull('pledge_id')->get();
         return view('pledges.index', compact("pledges"));
     }
 
-   
+
     public function create()
     {
         $FundActivity = FundActivity::where('status','1')->get();

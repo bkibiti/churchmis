@@ -69,13 +69,11 @@ class MemberController extends Controller
         session()->flash("alert-success", "Record Saved Successfully!");
         return redirect()->route('member.pledges');
     }
-
-
+    
     public function payments()
     {
         $payments = DB::table('vw_pledges_and_payments')->whereNotNull('pay_id')->where('person_id',Auth::user()->person_id)->get();
         return view('members.payment', compact("payments"));
-
     }
 
 }

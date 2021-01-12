@@ -14,8 +14,8 @@ class MemberController extends Controller
         $person = Person::find($member_id);
         return new Member($person);
     }
-    
-    public function show($member_id)
+
+    public function dependants($member_id)
     {
         $person = Person::find($member_id);
         return new Member($person);

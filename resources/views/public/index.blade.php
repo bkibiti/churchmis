@@ -172,11 +172,9 @@
                     <div class="col-xl-6">
                         <div class="welcome_right">
                             <div class="welcome_text">
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration in some form, by injected humour. or randomised words which
-                                    don't look even slightly believable.</p>
+                                <p></p>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6">
                                     <div class="welcome_img_box">
                                         <img src="assets/images/resources/welcom-one-img-1.jpg" alt="">
@@ -187,7 +185,7 @@
                                         <img src="assets/images/resources/welcom-one-img-2.jpg" alt="">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -195,7 +193,7 @@
         </section>
 
         <!--Why Choose Start-->
-        <section class="why_choose_one">
+        {{-- <section class="why_choose_one">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6">
@@ -258,13 +256,13 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
       
      
    
         <!--Three Boxes Start-->
-        <section class="three_boxes">
+        {{-- <section class="three_boxes">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4 col-lg-4">
@@ -308,7 +306,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!--Blog Three Start-->
         {{-- <section class="blog_three">
@@ -406,7 +404,7 @@
         </section> --}}
 
         <!--Brand Three Start-->
-        <section class="brand_three">
+        {{-- <section class="brand_three">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-6">
@@ -445,7 +443,7 @@
             </div>
         </section>
 
-      
+       --}}
 
 
     

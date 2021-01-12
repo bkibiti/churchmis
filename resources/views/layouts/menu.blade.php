@@ -172,6 +172,12 @@
               <p>Users</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('users.pending')}}" class="nav-link">
+              <i class="fas fa-angle-double-right"></i>
+              <p>Approve</p>
+            </a>
+          </li>
        
         </ul>
       </li>

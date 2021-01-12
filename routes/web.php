@@ -12,61 +12,88 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'PublicController@index')->name('public-home');
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
-
-//localizaiton
-Route::get('localization/{locale}/', 'LocalizationController@index')->name('localization.index');
-
-
-//Person controller
-Route::resource('people', 'PersonController');
-Route::resource('family', 'FamilyController');
-
-Route::resource('services', 'ServiceController');
-// Route::resource('service-types', 'GroupTypeController');
+Route::middleware(['auth'])->group(function () {
+    //localizaiton
+    Route::get('localization/{locale}/', 'LocalizationController@index')->name('localization.index');
 
 
-//envets
-Route::resource('event-types', 'EventTypeController');
-Route::resource('events', 'EventController');
-Route::resource('events-attendance', 'EventAttendanceController');
+    Route::middleware(['is_member'])->group(function () {
 
-Route::get('events-calender', 'EventController@calender')->name('calender');
+        Route::get('/member/pending', 'MemberController@pending')->name('pending-approval');
 
-//pledges
-Route::resource('pledges', 'PledgeController');
+        Route::middleware(['approved'])->group(function () {
+            Route::get('/member/home', 'MemberController@index')->name('member-home');
+            Route::get('/member/pledges', 'MemberController@pledges')->name('member.pledges');
+            Route::get('/member/pledges/create', 'MemberController@create')->name('member.pledges.create');
+            Route::post('/member/pledges', 'MemberController@pledgeStore')->name('member.pledges.store');
+            Route::get('/member/payments', 'MemberController@payments')->name('member.payments');
 
-Route::resource('fund-activities', 'FundActivityController')->only([
-    'index', 'store','update','destroy'
-]);
 
-//payments
-Route::resource('payments', 'PaymentController');
-Route::post('payments/pledges', 'PaymentController@getPledges')->name('payments.pledges');
+        });
+    });
 
- //user roles
- Route::get('user-roles', 'RoleController@index')->name('roles.index');
- Route::get('user-roles/create', 'RoleController@create')->name('roles.create');
- Route::post('user-roles', 'RoleController@store')->name('roles.store');
- Route::get('user-roles/{id}/edit', 'RoleController@edit')->name('roles.edit');
- Route::post('user-roles/update', 'RoleController@update')->name('roles.update');
- Route::delete('user-roles/delete', 'RoleController@destroy')->name("roles.destroy");
- 
-//users routes
-Route::get('users', 'UserController@index')->name('users.index');
-Route::post('users/register', 'UserController@store')->name("users.store");
-Route::post('users/update', 'UserController@update')->name("users.update");
-Route::put('users/delete', 'UserController@delete')->name("users.delete");
-Route::post('users/de-actiavate', 'UserController@deActivate')->name("users.deactivate");
-Route::post('users/change-password', 'UserController@changePassword')->name('change-password');
-Route::get('users/change-password', 'UserController@changePasswordForm')->name('change-pass-form');
-Route::post('user-profile/update', 'UserController@updateProfile')->name("update-profile");
-Route::get('users/search', 'UserController@search')->name("users.search");
-Route::post('users/user-role-id', 'UserController@getRoleID')->name('getRoleID');
+
+    Route::middleware(['is_admin'])->group(function () {
+         
+        Route::get('admin/dashboard', 'HomeController@index')->name('home');
+
+        //Person controller
+        Route::resource('admin/people', 'PersonController');
+        Route::resource('admin/family', 'FamilyController');
+
+        Route::resource('admin/services', 'ServiceController');
+        // Route::resource('service-types', 'GroupTypeController');
+
+
+        //envets
+        Route::resource('admin/event-types', 'EventTypeController');
+        Route::resource('admin/events', 'EventController');
+        Route::resource('admin/events-attendance', 'EventAttendanceController');
+
+        Route::get('admin/events-calender', 'EventController@calender')->name('calender');
+
+        //pledges
+        Route::resource('admin/admin/pledges', 'PledgeController');
+
+        Route::resource('admin/fund-activities', 'FundActivityController')->only([
+            'index', 'store','update','destroy'
+        ]);
+
+        //payments
+        Route::resource('admin/payments', 'PaymentController');
+        Route::post('admin/payments/pledges', 'PaymentController@getPledges')->name('payments.pledges');
+
+        //user roles
+        Route::get('admin/user-roles', 'RoleController@index')->name('roles.index');
+        Route::get('admin/user-roles/create', 'RoleController@create')->name('roles.create');
+        Route::post('admin/user-roles', 'RoleController@store')->name('roles.store');
+        Route::get('admin/user-roles/{id}/edit', 'RoleController@edit')->name('roles.edit');
+        Route::post('admin/user-roles/update', 'RoleController@update')->name('roles.update');
+        Route::delete('admin/user-roles/delete', 'RoleController@destroy')->name("roles.destroy");
+        
+        //users routes
+        Route::get('admin/users', 'UserController@index')->name('users.index');
+        Route::get('admin/users/pending', 'UserController@pending_users')->name('users.pending');
+        Route::post('admin/users/register', 'UserController@store')->name("users.store");
+        Route::post('admin/users/approve', 'UserController@approve')->name("users.approve");
+        Route::post('admin/users/update', 'UserController@update')->name("users.update");
+        Route::put('admin/users/delete', 'UserController@delete')->name("users.delete");
+        Route::post('admin/users/de-actiavate', 'UserController@deActivate')->name("users.deactivate");
+        Route::post('admin/users/change-password', 'UserController@changePassword')->name('change-password');
+        Route::get('admin/users/change-password', 'UserController@changePasswordForm')->name('change-pass-form');
+        Route::post('admin/user-profile/update', 'UserController@updateProfile')->name("update-profile");
+        Route::get('admin/users/search', 'UserController@search')->name("users.search");
+        Route::post('admin/users/user-role-id', 'UserController@getRoleID')->name('getRoleID');
+     });
+  
+
+
+});

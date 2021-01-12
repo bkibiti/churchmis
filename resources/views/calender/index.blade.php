@@ -115,23 +115,6 @@ var calendarEl = document.getElementById('calendar');
       )
     });
 
-    //wedding anniversaries 
-    $.each(@json($anniversary), function(index, value) { 
-      var url = '{{ route("family.show", ":id") }}';
-      url = url.replace(':id', value.id);
-      var month = parseInt(value.month)-1;
-    
-      events.push(
-          {
-            title          : value.name,
-            start          : new Date(y, month, value.day),
-            end            : new Date(y, month, value.day),
-            url            : url,
-            backgroundColor: '#00a65a', 
-            borderColor    : '#00a65a' 
-          },
-      )
-    });
   //events
     $.each(@json($events), function(index, value) { 
         //get color of event type

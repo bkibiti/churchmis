@@ -10,6 +10,7 @@ use App\PersonRelations;
 use App\PersonDependant;
 use Illuminate\Http\Request;
 use Auth;
+
 use App\Http\Requests\StorePersonRequest;
 
 class PersonController extends Controller

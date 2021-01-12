@@ -17,16 +17,20 @@
   <link rel="stylesheet" href="{{asset("dist/css/adminlte.min.css")}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="shortcut icon" href="{{ asset('favicon.png') }}"  type='image/x-icon'>
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    {{-- <a href=""><b>Smart</b>Church</a> --}}
+    <img src="{{ asset('dist/img/logo_trans.png') }}" width="50" height="50"> 
+    <br>
+    <a href="{{ route('public-home') }}"><b>Smart</b>Church</a> 
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <img src="{{ asset('dist/img/logo.jpeg') }}" width="260" height="70"> 
+      {{-- <img src="{{ asset('dist/img/logo.jpeg') }}" width="260" height="70">  --}}
       <p class="login-box-msg">Sign in to start</p>
 
       <form method="POST" action="{{ route('login') }}">
@@ -84,7 +88,11 @@
                 {{ __('Forgot Your Password?') }}
             </a>
         @endif
+        <br>
    
+            <a href="{{ route('register') }}">
+                {{ __('Register a new membership') }}
+            </a>
      
     </div>
     <!-- /.login-card-body -->

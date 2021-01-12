@@ -35,7 +35,6 @@ class PledgeController extends Controller
    
     public function store(Request $request)
     {
-// dd($request->all());
         $pledge = new Pledge;
         $pledge->activity_id = $request->activity_id;
         $pledge->person_id = $request->person_id;

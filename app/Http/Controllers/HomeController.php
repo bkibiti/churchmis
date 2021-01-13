@@ -22,7 +22,6 @@ class HomeController extends Controller
     public function index()
     {
         $personCount = Person::groupBy('gender')->selectRaw('gender,count(*) as count')->orderBy('gender')->get();
-        //  dd($personCount[1]->count);
         
         $groupCount = Service::count();
         $upcoming = Event::whereDate('start', '>', Carbon::now())->count();

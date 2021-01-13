@@ -200,12 +200,9 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Msharika Jirani</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="neighbour" name="neighbour">
-                                        <option value="">--{{ __('members.select')}}--</option>
-                                        @foreach ($members as $m)
-                                            <option value={{ $m->id }} {{ $person->neighbour == $m->id ? 'selected' : '' }}> {{ $m->name }}</option>
-                                        @endforeach
-                                    </select>
+                                  
+                                    <input type="text" class="form-control" value="{{ $person->neighbour }}" name="neighbour" id="neighbour">
+
                                 </div>
                                 <label class="col-sm-2 col-form-label">Jina la Mzee wa Kanisa</label>
                                 <div class="col-sm-4">
@@ -378,14 +375,9 @@
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Jina la Mwenyekiti wa Nyumba kwa Nyumba</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control select2" id="community_leader" name="community_leader">
-                                        <option value="">--{{ __('members.select')}}--</option>
-                                        @foreach ($members as $m)
-                                            @if ($m->position_id == 3)
-                                                <option value={{ $m->id }} {{ $person->community_leader == $m->id ? 'selected' : '' }}> {{ $m->name }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                                  
+                                    <input type="text" class="form-control" value="{{ $person->community_leader }}" name="community_leader" id="community_leader">
+
                                 </div>
                             </div>
                             @php

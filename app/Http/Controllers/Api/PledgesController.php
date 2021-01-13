@@ -13,7 +13,11 @@ class PledgesController extends Controller
 {
     public function show($member_id)
     {
-        $pledges = DB::table('vw_pledges_and_payments')->whereNotNull('pledge_id')->where('person_id',$member_id)->get();
+        $pledges = DB::select("SELECT p.activity_id,a.name AS activity,p.person_id AS member_id,ps.name, p.id AS pledge_id, p.pledge_date,p.amount
+                    FROM  pledges p 
+                    JOIN persons ps ON ps.id = p.person_id 
+                    JOIN fund_activities a ON a.id = p.activity_id
+                    WHERE p.person_id = '" . $member_id  ."'");
         return $pledges;
     }
 

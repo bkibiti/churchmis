@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,21 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+], function ($router) {
+    Route::post('/login', 'Api\AuthController@login');
+    Route::post('/register', 'Api\AuthController@register');
+    Route::post('/logout', 'Api\AuthController@logout');
+    Route::post('/refresh', 'Api\AuthController@refresh');
+    Route::get('/user-profile', 'Api\AuthController@userProfile');    
 });
+
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::get('pledges/{member_id}', 'Api\PledgesController@show');

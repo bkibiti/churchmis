@@ -24,7 +24,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>500,000</h3>
+                        <h3>450,000</h3>
 
                         <p>Jumla ya Ahadi Zote </p>
                     </div>
@@ -38,7 +38,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>500000</h3>
+                        <h3>200,000</h3>
 
                         <p>Jumla ya Michango Yote</p>
                     </div>
@@ -54,7 +54,7 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>555 </h3>
+                        <h3>250,000 </h3>
 
                         <p>Jumla ya Deni Unalodaiwa</p>
                     </div>

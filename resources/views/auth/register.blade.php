@@ -67,6 +67,20 @@
         </div>
 
         <div class="input-group mb-3">
+          <input id="mobile" type="text" placeholder="Mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          @error('mobile')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="input-group mb-3">
           <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -81,7 +95,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <input id="password-confirm" type="password" placeholder="Retype password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+          <input id="password_confirmation" type="password" placeholder="Retype password" class="form-control" name="password_confirmation" required autocomplete="new-password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -90,7 +104,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <textarea id="request_note" name="request_note" class="form-control" rows="3" placeholder="Maelezo kwa ajili ya uhakiki. Mfano: Usharika, Jumuiya, Kiongozi wako n.k" required></textarea>
+          <textarea id="request_note" name="request_note" class="form-control @error('request_note') is-invalid @enderror" rows="2" placeholder="Maelezo kwa ajili ya uhakiki. Mfano: Usharika, Jumuiya, Kiongozi wako n.k" required></textarea>
           @error('request_note')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>

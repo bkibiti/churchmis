@@ -38,3 +38,11 @@ Route::get('pledge-types', 'Api\PledgesController@pledgeTypes');
 Route::get('payments/{member_id}', 'Api\PaymentsController@show');
 
 Route::get('member/{member_id}', 'Api\MemberController@show');
+
+Route::get('dioceses', 'Api\ChurchController@getDioceses');
+Route::get('dioceses/{id}', 'Api\ChurchController@getDiocese');
+
+Route::get('districts', 'Api\ChurchController@getDistricts');
+Route::get('districts/{id}', 'Api\ChurchController@getDistrict');
+Route::get('churches', 'Api\ChurchController@getchurches');
+Route::get('churches/{id}', 'Api\ChurchController@getchurche');

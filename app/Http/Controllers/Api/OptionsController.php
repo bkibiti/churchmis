@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\MarriageStatus;
 use App\PersonPosition;
 use App\Community;
+use App\Service;
 
 class OptionsController extends Controller
 {
@@ -24,6 +25,11 @@ class OptionsController extends Controller
     public function getcommunities()
     {
         return Community::all();
+    }
+
+    public function getServices()
+    {
+        return Service::select('id','name')->get();
     }
 
     

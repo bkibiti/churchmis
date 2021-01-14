@@ -49,5 +49,7 @@ Route::get('churches/{id}', 'Api\ChurchController@getchurche');
 Route::get('option/marriage-status', 'Api\OptionsController@getMarriageStatus');
 Route::get('option/positions', 'Api\OptionsController@getPosition');
 Route::get('option/communities', 'Api\OptionsController@getcommunities');
+Route::get('option/services', 'Api\OptionsController@getServices');
+
 
 

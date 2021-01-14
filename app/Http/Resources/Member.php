@@ -48,7 +48,7 @@ class Member extends JsonResource
             'services'=> $this->services,
             'pledge_number'=> $this->pledge_no,
             'form_return_date'=>  (string)$this->form_return_date,
-            'position'=> $this->position,
+            'position'=> $this->position->name,
             'created_at'=>  (string)$this->created_at,
             'updated_at'=>  (string)$this->updated_at,
         ];

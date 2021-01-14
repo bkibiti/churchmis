@@ -30,7 +30,6 @@ Route::group([
 //     return $request->user();
 // });
 
-
 Route::get('pledges/{member_id}', 'Api\PledgesController@show');
 Route::post('pledges', 'Api\PledgesController@store');
 Route::get('pledge-types', 'Api\PledgesController@pledgeTypes');
@@ -46,3 +45,9 @@ Route::get('districts', 'Api\ChurchController@getDistricts');
 Route::get('districts/{id}', 'Api\ChurchController@getDistrict');
 Route::get('churches', 'Api\ChurchController@getchurches');
 Route::get('churches/{id}', 'Api\ChurchController@getchurche');
+
+Route::get('option/marriage-status', 'Api\OptionsController@getMarriageStatus');
+Route::get('option/positions', 'Api\OptionsController@getPosition');
+Route::get('option/communities', 'Api\OptionsController@getcommunities');
+
+

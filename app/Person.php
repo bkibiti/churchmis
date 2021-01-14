@@ -33,4 +33,15 @@ class Person extends Model
         return $this->hasMany('App\PersonDependant', 'person_id', 'id');
     }
 
+    public function marriageStatus()
+    {
+        return $this->belongsTo('App\MarriageStatus', 'marriage_status_id','id');
+    }
+
+    public function community() //nyumba kwa nyumba
+    {
+        return $this->belongsTo('App\Community', 'community_id','id');
+    }
+
+
 }

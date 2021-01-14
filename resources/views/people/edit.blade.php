@@ -71,15 +71,10 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Hali ya Ndoa</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="marriage_status" name="marriage_status">
-                                        <option value="">--{{ __('members.select')}}--</option>
-                                        <option value="Ameoa" {{ $person->marriage_status == 'Ameoa' ? 'selected' : '' }}>Ameoa</option>
-                                        <option value="Hajaoa" {{ $person->marriage_status == 'Hajaoa' ? 'selected' : '' }}> Hajaoa</option>
-                                        <option value="Ameolewa" {{ $person->marriage_status == 'Ameolewa' ? 'selected' : '' }}> Ameolewa</option>
-                                        <option value="Hajaoa" {{ $person->marriage_status == 'Hajaoa' ? 'selected' : '' }}> Hajaoa </option>
-                                        <option value="Mjane" {{ $person->marriage_status == 'Mjane' ? 'selected' : '' }}> Mjane </option>
-                                        <option value="Talaka" {{ $person->marriage_status == 'Talaka' ? 'selected' : '' }}>Talaka</option>
-                                        <option value="Wametengana" {{ $person->marriage_status == 'Wametengana' ? 'selected' : '' }}>Wametengana</option>
+                                    <select class="form-control select2" id="marriage_status_id" name="marriage_status_id">
+                                        @foreach ($marriageStatus as $e)
+                                            <option value={{ $e->id }} {{ $person->marriage_status_id == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -89,10 +84,8 @@
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="marriage_type" name="marriage_type">
                                         <option value="">--{{ __('members.select')}}--</option>
-                                        <option value="Kikristo" {{ $person->marriage_status == 'Kikristo' ? 'selected' : '' }}>
-                                            Kikristo</option>
-                                        <option value="SioKikristo" {{ $person->marriage_status == 'SioKikristo' ? 'selected' : '' }}>Sio Kikristo
-                                        </option>
+                                        <option value="Kikristo" {{ $person->marriage_type == 'Kikristo' ? 'selected' : '' }}> Kikristo</option>
+                                        <option value="SioKikristo" {{ $person->marriage_type == 'SioKikristo' ? 'selected' : '' }}>Sio Kikristo</option>
                                     </select>
                                 </div>
                                 <label class="col-sm-2 col-form-label">Tarehe ya Ndoa</label>
@@ -356,9 +349,11 @@
                                 </div>
                                 <label class="col-sm-3 col-form-label">Jina la Nyumba kwa Nyumba</label>
                                 <div class="col-sm-3">
-                                    <select class="form-control select2" id="community_name" name="community_name">
+                                    <select class="form-control select2" id="community_id" name="community_id">
                                         <option value="">--{{ __('members.select')}}--</option>
-
+                                        @foreach ($Community as $e)
+                                            <option value={{ $e->id }} {{ $person->community_id == $e->id ? 'selected' : '' }}> {{ $e->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

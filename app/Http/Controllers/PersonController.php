@@ -8,6 +8,9 @@ use App\PersonPosition;
 use App\PersonRole;
 use App\PersonRelations;
 use App\PersonDependant;
+use App\MarriageStatus;
+use App\Community;
+
 use Illuminate\Http\Request;
 use Auth;
 
@@ -29,8 +32,10 @@ class PersonController extends Controller
         $members = Person::select('id','name','position_id','gender')->get();
         $service = Service::all();
         $allRelations = PersonRelations::all();
+        $marriageStatus = MarriageStatus::all();
+        $Community = Community::all();
 
-        return view('people.create',compact('position','members','service','allRelations'));
+        return view('people.create',compact('position','members','service','allRelations','marriageStatus','Community'));
     }
 
    
@@ -98,8 +103,11 @@ class PersonController extends Controller
         $service = Service::all();
         $allRelations = PersonRelations::all();
         $members = Person::select('id','name','position_id','gender')->get();
+        $marriageStatus = MarriageStatus::all();
+        $Community = Community::all();
 
-        return view('people.edit',compact('position','dependants','service','person','allRelations','relations','members'));
+        return view('people.edit',compact('position','dependants','service','person','allRelations',
+                    'relations','members','marriageStatus','Community'));
     }
 
  

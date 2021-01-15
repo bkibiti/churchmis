@@ -37,6 +37,9 @@ Route::get('pledge-types', 'Api\PledgesController@pledgeTypes');
 Route::get('payments/{member_id}', 'Api\PaymentsController@show');
 
 Route::get('member/{member_id}', 'Api\MemberController@show');
+Route::post('member', 'Api\MemberController@store');
+Route::post('member/{member_id}', 'Api\MemberController@update');
+
 
 Route::get('dioceses', 'Api\ChurchController@getDioceses');
 Route::get('dioceses/{id}', 'Api\ChurchController@getDiocese');

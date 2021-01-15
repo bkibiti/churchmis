@@ -57,7 +57,7 @@ class MemberController extends Controller
         $person->save();
 
         return response()->json([
-            'message' => 'Member successfully registered',
+            'message' => 'Successfully created',
             'member' => $person
         ], 201);
     }
@@ -91,7 +91,7 @@ class MemberController extends Controller
         $person->save();
 
         return response()->json([
-            'message' => 'Member successfully updated',
+            'message' => 'Successfully updated',
             'member' => $person
         ], 201);
     }

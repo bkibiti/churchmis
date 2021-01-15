@@ -103,15 +103,7 @@
           </div>
         </div>
 
-        <div class="input-group mb-3">
-          <textarea id="request_note" name="request_note" class="form-control @error('request_note') is-invalid @enderror" rows="2" placeholder="Maelezo kwa ajili ya uhakiki. Mfano: Usharika, Jumuiya, Kiongozi wako n.k" required></textarea>
-          @error('request_note')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-          @enderror
-        </div>
-
+    
         <div class="row">
           <div class="col-8">
           

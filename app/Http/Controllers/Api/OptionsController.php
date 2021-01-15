@@ -11,7 +11,10 @@ use App\Service;
 
 class OptionsController extends Controller
 {
- 
+    public function __construct() {
+        $this->middleware('auth:api');
+    }
+    
     public function getMarriageStatus()
     {
         return MarriageStatus::all();

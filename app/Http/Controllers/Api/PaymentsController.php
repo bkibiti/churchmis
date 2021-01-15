@@ -9,6 +9,10 @@ use DB;
 
 class PaymentsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:api');
+    }
+    
     public function show($member_id)
     {
         $payments = DB::select("SELECT p.activity_id,a.name AS activity,p.person_id AS member_id,ps.name AS name,

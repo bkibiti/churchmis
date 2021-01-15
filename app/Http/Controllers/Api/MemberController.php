@@ -9,6 +9,10 @@ use App\Http\Resources\Member;
 
 class MemberController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:api');
+    }
+    
     public function show($member_id)
     {
         $person = Person::find($member_id);

@@ -56,7 +56,6 @@ class RegisterController extends Controller
             'mobile' => 'required|string|between:9,15',
             'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'request_note' => 'required|string|between:5,200', 
         ]);
     }
 
@@ -68,12 +67,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
-            'request_note' => $data['request_note'],     
             'status' => '1',          
             'password' => Hash::make($data['password']),
             'is_admin' => 'FALSE',

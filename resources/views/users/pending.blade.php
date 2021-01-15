@@ -39,7 +39,6 @@
               <th>Name</th>
               <th>E-mail</th>
               <th>Mobile</th>
-              <th>Request Note</th>
               <th>Action</th>
               
               </tr>
@@ -50,7 +49,6 @@
               <td>{{$user->name}} </td>
               <td>{{$user->email}}</td>
               <td>{{$user->mobile}}</td>
-              <td>{{$user->request_note}}</td>
 
     
               {{-- @can('Manage Users') --}}

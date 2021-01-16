@@ -27,11 +27,14 @@
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <div class="alert alert-warning alert-dismissible">
-                            <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
-                            Your account is waiting for approval. Please check back later
+                        @if ($person->status == 0)
+                            <div class="alert alert-warning alert-dismissible">
+                                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                                Tafadhali kamilisha kujaza taarifa zako
+                            </div>
+                        @endif
 
-                          </div>
+                        
                     </div>
                     <!-- /.card-body -->
                 </div>

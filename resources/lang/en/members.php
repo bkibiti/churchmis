@@ -50,5 +50,6 @@ return[
     'memberinfo' => 'Member Information',
     'personalinfo' => 'Personal Information',
     'attendancedash' =>'Events Attendance',
-
+    'search' => 'Search',
+    
 ];

@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Person;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -30,7 +32,7 @@ class RegisterController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/member/pending';
+    protected $redirectTo = '/member/home';
 
 
     /**
@@ -67,6 +69,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //save person profile
+        $person = new Person;
+        $person->name =  $data['name'];
+        $person->email = $data['email'];
+        $person->mobile_phone = $data['mobile'];
+        $person->position_id = 1;
+        $person->status = 0;
+        $person->save();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -74,6 +85,10 @@ class RegisterController extends Controller
             'status' => '1',          
             'password' => Hash::make($data['password']),
             'is_admin' => 'FALSE',
+            'person_id' => $person->id,         
         ]);
+
+       
+ 
     }
 }

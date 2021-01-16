@@ -30,7 +30,6 @@ return [
     'dependents' => 'Wategemezi na Watoto',
     'memberage' => 'Idadi ya Washarika kwa Umri',
     'memberpos' => 'Idadi ya Washarika kwa Nafasi',
-    
-
-    
+    'approve' => 'Hakiki Washarika',
+    'dependants' => 'Orodha ya Wategemezi',
 ];

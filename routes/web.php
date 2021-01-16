@@ -29,15 +29,12 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/member/pending', 'MemberController@pending')->name('pending-approval');
 
-        Route::middleware(['approved'])->group(function () {
-            Route::get('/member/home', 'MemberController@index')->name('member-home');
-            Route::get('/member/pledges', 'MemberController@pledges')->name('member.pledges');
-            Route::get('/member/pledges/create', 'MemberController@create')->name('member.pledges.create');
-            Route::post('/member/pledges', 'MemberController@pledgeStore')->name('member.pledges.store');
-            Route::get('/member/payments', 'MemberController@payments')->name('member.payments');
+        Route::get('/member/home', 'MemberController@index')->name('member-home');
+        Route::get('/member/pledges', 'MemberController@pledges')->name('member.pledges');
+        Route::get('/member/pledges/create', 'MemberController@create')->name('member.pledges.create');
+        Route::post('/member/pledges', 'MemberController@pledgeStore')->name('member.pledges.store');
+        Route::get('/member/payments', 'MemberController@payments')->name('member.payments');
 
-
-        });
     });
 
 
@@ -46,8 +43,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/dashboard', 'HomeController@index')->name('home');
 
         //Person controller
+        Route::get('admin/people/pending', 'PersonController@pending')->name('people.pending');
+        Route::post('admin/people/approve', 'PersonController@approve')->name('people.approve');
+        Route::post('admin/people/search', 'PersonController@search')->name('people.search');
         Route::resource('admin/people', 'PersonController');
-        Route::resource('admin/family', 'FamilyController');
+        
+        //dependats
+        Route::get('admin/dependants', 'DependantsController@index')->name('dependants.index');
+        Route::get('admin/dependants/{id}', 'DependantsController@create')->name('dependants.create');
+        Route::post('admin/dependants', 'DependantsController@store')->name('dependants.store');
+
+
+
+        
+        // Route::resource('admin/family', 'FamilyController');
 
         Route::resource('admin/services', 'ServiceController');
         // Route::resource('service-types', 'GroupTypeController');
@@ -81,9 +90,7 @@ Route::middleware(['auth'])->group(function () {
         
         //users routes
         Route::get('admin/users', 'UserController@index')->name('users.index');
-        Route::get('admin/users/pending', 'UserController@pending_users')->name('users.pending');
         Route::post('admin/users/register', 'UserController@store')->name("users.store");
-        Route::post('admin/users/approve', 'UserController@approve')->name("users.approve");
         Route::post('admin/users/update', 'UserController@update')->name("users.update");
         Route::put('admin/users/delete', 'UserController@delete')->name("users.delete");
         Route::post('admin/users/de-actiavate', 'UserController@deActivate')->name("users.deactivate");

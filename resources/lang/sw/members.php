@@ -50,6 +50,6 @@ return[
     'memberinfo' => 'Taarifa za Msharika',
     'personalinfo' => 'Taarifa Binafsi',
     'attendancedash' =>'Mahudhurio ya Matukio',
-
+    'search' => 'Tafuta',
 
 ];

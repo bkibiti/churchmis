@@ -30,5 +30,7 @@ return [
     'dependents' => 'Dependents and Children',
     'memberage' => 'Members by Age',
     'memberpos' => 'Members by Position',
+    'approve' => 'Approve Members',
+    'dependants' => 'Dependants List',
     
 ];

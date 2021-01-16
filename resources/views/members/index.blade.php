@@ -19,12 +19,36 @@
 
 @section('content')
     <div class="container-fluid">
+      
+          @if ($person->status == 0)
+            <div class="alert alert-warning alert-dismissible">
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                Tafadhali kamilisha kujaza taarifa zako ili kuendelea.
+            </div>
+          @endif
+
+          @if ($person->status == 1)
+            <div class="alert alert-warning alert-dismissible">
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                Taarifa zako zina hakikiwa, utapokea taarifa uhakiki ukikamilika. 
+            </div>
+          @endif
+          @if ($person->status == 2)
+            <div class="alert alert-warning alert-dismissible">
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+                Taarifa zako zina kasoro, Tafadhali rekebisha na utume tena. 
+            </div>
+         @endif
+
         <div class="row">
             <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>450,000</h3>
+                        <h3>
+                            {{number_format($pledges, 2, '.', ',')}}
+
+                        </h3>
 
                         <p>Jumla ya Ahadi Zote </p>
                     </div>
@@ -38,9 +62,11 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>200,000</h3>
+                        <h3>
+                            {{number_format($paidPledges, 2, '.', ',')}}
+                        </h3>
 
-                        <p>Jumla ya Michango Yote</p>
+                        <p>Jumla ya Ahadi Zilizolipwa</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -54,9 +80,11 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>250,000 </h3>
+                        <h3>
+                            {{number_format($pledges-$paidPledges, 2, '.', ',')}}
+                        </h3>
 
-                        <p>Jumla ya Deni Unalodaiwa</p>
+                        <p>Jumla ya Ahadi Zilizobaki</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -138,33 +166,28 @@
 
                                     {{-- Wategemezi --}}
                                     <div class="tab-pane fade " id="family" role="tabpanel" aria-labelledby="family-tab">
-                                        @if ($members->isNotEmpty())
+                                        @if ($person->dependants->isNotEmpty())
                                             <table id="mydatatable" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Jina</th>
                                                         <th>Jinsia</th>
-                                                        <th>Simu</th>
+                                                        <th>Umri</th>
                                                         <th>Uhusiano</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                
-                                                    @foreach ($members as $p)
+                                                    @foreach ($person->dependants as $p)
                                                         <tr>
                                                             <td>{{ $p->name }}</td>
                                                             <td>{{ $p->gender }}</td>
-                                                            <td>{{ $p->mobile_phone }}</td>
-                                                            <td>
-                                                                @foreach ($allRelations as $r)
-                                                             
-                                                                    @if ($r->id == $relations['K'.$p->id])
-                                                                        {{$r->name}}
-                                                                    @endif
-
-                                                                @endforeach
-                                                                
-                                                            </td>
+                                                            @if ($p->dob == '')
+                                                                <td>-</td>
+                                                            @else
+                                                                <td>{{'Miaka ' . $person->age($p->dob) }}</td>
+                                                            @endif
+                                                            <td>{{ $p->relationship->name }}</td>
 
                                                         </tr>
                                                     @endforeach
@@ -177,7 +200,7 @@
                                             <div class="alert alert-warning alert-dismissible">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                 <i class="icon fas fa-info"></i>
-                                                Person has no family members
+                                                Hakuna Wategemezi
                                             </div>
                                         @endif
 

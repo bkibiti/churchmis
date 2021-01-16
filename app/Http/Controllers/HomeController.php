@@ -32,9 +32,8 @@ class HomeController extends Controller
         JOIN person_position cl ON cl.id = position_id
         GROUP BY position_id");
 
-        $dependants = DB::select("SELECT p.gender,count(p.id) total FROM person_dependants d
-        JOIN persons p on p.id = d.dependant_id
-        GROUP BY p.gender ORDER BY gender");
+        $dependants = DB::select("SELECT gender,count(gender) total FROM person_dependants
+        GROUP BY gender ORDER BY gender");
 
 
         $ageCategory = DB::select("SELECT gender,

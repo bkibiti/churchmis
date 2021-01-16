@@ -114,7 +114,7 @@
 
                             <hr>
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-sm-6">
                                     <h5 class="mb-2">Wategemezi</h5>
                                 </div>
@@ -134,7 +134,7 @@
                             </div>
                 
                             <input type="hidden" name="dependant_ids" id="dependant_ids" >
-                            <input type="hidden" name="relation_ids" id="relation_ids">
+                            <input type="hidden" name="relation_ids" id="relation_ids"> --}}
 
 
 
@@ -441,7 +441,7 @@
 
 @push('page_scripts')
     @include('partials.notification')
-    @include('people.add_dependant')
+
     
     <script>
         $(document).ready(function() {

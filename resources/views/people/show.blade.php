@@ -101,33 +101,28 @@
 
                                     {{-- Wategemezi --}}
                                     <div class="tab-pane fade " id="family" role="tabpanel" aria-labelledby="family-tab">
-                                        @if ($members->isNotEmpty())
+                                        @if ($person->dependants->isNotEmpty())
                                             <table id="mydatatable" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Jina</th>
                                                         <th>Jinsia</th>
-                                                        <th>Simu</th>
+                                                        <th>Umri</th>
                                                         <th>Uhusiano</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                
-                                                    @foreach ($members as $p)
+                                                    @foreach ($person->dependants as $p)
                                                         <tr>
                                                             <td>{{ $p->name }}</td>
                                                             <td>{{ $p->gender }}</td>
-                                                            <td>{{ $p->mobile_phone }}</td>
-                                                            <td>
-                                                                @foreach ($allRelations as $r)
-                                                             
-                                                                    @if ($r->id == $relations['K'.$p->id])
-                                                                        {{$r->name}}
-                                                                    @endif
-
-                                                                @endforeach
-                                                                
-                                                            </td>
+                                                            @if ($p->dob == '')
+                                                                <td>-</td>
+                                                            @else
+                                                                <td>{{'Miaka ' . $person->age($p->dob) }}</td>
+                                                            @endif
+                                                            <td>{{ $p->relationship->name }}</td>
 
                                                         </tr>
                                                     @endforeach
@@ -140,10 +135,9 @@
                                             <div class="alert alert-warning alert-dismissible">
                                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                 <i class="icon fas fa-info"></i>
-                                                Person has no family members
+                                                Hakuna Wategemezi
                                             </div>
                                         @endif
-
 
                                     </div>
 
@@ -187,6 +181,7 @@
         <!-- /.row -->
 
 
+{{-- Pledges and Payments --}}
 
         <div class="row">
             <div class="col-md-12">
@@ -199,7 +194,6 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="" method="POST">
 
 
                         <div class="card-body">
@@ -233,10 +227,56 @@
                                 <div class="alert alert-warning alert-dismissible">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     <i class="icon fas fa-info"></i>
-                                    Person has Pledges
+                                    Hakuna taarifa za Ahadi
                                 </div>
                             @endif
 
+
+                        </div>
+
+                </div>
+                <!-- /.card -->
+
+            </div>
+
+        </div>
+
+ {{-- Approve Member --}}
+        @if ($person->status == 1)
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            
+                            Thibitisha Taarifa
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" action="{{ route('people.approve') }}" method="POST">
+                        @csrf
+
+                        <div class="card-body">
+                            <input type="hidden" name="person_id" value = "{{$person->id}}" >
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Sababu ya Kuthibitisha<font color="red">*</font></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="approval_note" id="approval_note" value="{{ old('approval_note') }}" required>
+                                </div>
+                            
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-2">
+                                    <button type="submit" name="selection" value="0" class="btn btn-danger btn-block">Kataa</button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" name="selection" value="1" class="btn btn-success float-right btn-block">Thibitisha</button>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -247,6 +287,10 @@
             </div>
 
         </div>
+            
+        @endif
+
+
 
     </div><!-- /.container-fluid -->
 @endsection

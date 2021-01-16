@@ -8,7 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
-use App\Person;
+
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
     
     public function index()
     {
-        $users = User::orderBy('name')->where('status','<','2')->get();
+        $users = User::orderBy('name')->get();
 
         return view('users.index', compact("users"));
     }
@@ -153,38 +153,5 @@ class UserController extends Controller
 
     }
 
-
-    public function pending_users()
-    {
-        $users = User::orderBy('name')->where('status','2')->get();
-
-        return view('users.pending', compact("users"));
-    }
-
-    public function approve(Request $request)
-    {
-        $user = new User;
-        $user = User::findOrFail($request->userid);
-
-        //save person profile
-        $person = new Person;
-        $person->name = $user->name;
-        $person->email = $user->email;
-        $person->mobile_phone = $user->mobile;
-        $person->status = 1;
-        $person->position_id = 1;
-        $person->created_by = Auth::user()->id;
-        $person->updated_by = Auth::user()->id;
-        $person->save();
-
-
-        $user->status = 1;
-        $user->person_id = $person->id;
-        $user->save();
-
-        session()->flash("alert-success", "User Approved successfully!");
-        return redirect()->route('users.pending');
-
-    }
 
 }

@@ -8,6 +8,7 @@ use App\PersonRelations;
 use App\FundActivity;
 use App\Pledge;
 use Carbon\Carbon;
+use App\Payment;
 
 use Auth;
 use DB;
@@ -18,22 +19,30 @@ class MemberController extends Controller
     public function index()
     {
         $person = Person::find(Auth::user()->person_id);
+        $pledge = Pledge::groupBy('person_id')
+                ->selectRaw('sum(amount) as sum')
+                ->where('person_id',Auth::user()->person_id)
+                ->first();
+        $paidPledge = Payment::groupBy('person_id')
+                ->selectRaw('sum(amount) as sum')
+                ->where('person_id',Auth::user()->person_id)
+                ->where('pledge_id','>',0)
+                ->first();
 
-        $dependants = [];
-        $relations = []; //relation of dependants
-
-        if ($person <> '') { 
-            foreach ($person->dependats as $dep) {
-                array_push($dependants,$dep->dependant_id);
-                $relations['K'.$dep->dependant_id] = $dep->relation_id;
-            }
+        if($pledge==''){
+            $pledges = 0;
+        }else{
+            $pledges=$pledge->sum;
         }
-      
 
-        $members = Person::whereIn('id',$dependants)->get();
-        $allRelations = PersonRelations::all();
+        if($paidPledge==''){
+            $paidPledges = 0;
+        }else{
+            $paidPledges=$paidPledge->sum;
+        }
 
-        return view('members.index',compact("person","members",'relations','allRelations'));
+
+        return view('members.index',compact("person",'pledges','paidPledges'));
     }
 
     public function pending()

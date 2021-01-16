@@ -13,6 +13,7 @@ use App\Community;
 
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 
 use App\Http\Requests\StorePersonRequest;
 
@@ -21,27 +22,26 @@ class PersonController extends Controller
    
     public function index()
     {
-        $people = person::all();
+        $people = person::where('status',3)->get();
         return view('people.index', compact("people"));
     }
 
  
     public function create()
     {
-        $position = PersonPosition::all();
         $members = Person::select('id','name','position_id','gender')->get();
         $service = Service::all();
-        $allRelations = PersonRelations::all();
+        $relations = PersonRelations::all();
+        $position = PersonPosition::all();
         $marriageStatus = MarriageStatus::all();
         $Community = Community::all();
 
-        return view('people.create',compact('position','members','service','allRelations','marriageStatus','Community'));
+        return view('people.create',compact('position','members','service','relations','marriageStatus','Community'));
     }
 
    
     public function store(StorePersonRequest $request)
     {
-      
         $person = new Person;
         $person->fill($request->all());
         $person->dob = toDbDateFormat($request->dob);
@@ -50,64 +50,31 @@ class PersonController extends Controller
         $person->date_marriage = toDbDateFormat($request->date_marriage);
         $person->form_return_date = toDbDateFormat($request->form_return_date);
         $person->services = array2String($request->services);
-        $person->status = 1;
+        $person->status = 3;
         $person->created_by = Auth::user()->id;
         $person->updated_by = Auth::user()->id;
         $person->save();
 
-        $dependantsIds = json_decode($request->dependant_ids,true);
-        $relationIds = json_decode($request->relation_ids,true);
-
-        for($i= 0; $i < count($dependantsIds); $i++){
-            $dependants = new PersonDependant;
-            $dependants->person_id= $person->id;
-            $dependants->dependant_id= $dependantsIds[$i];
-            $dependants->relation_id= $relationIds[$i];
-            $dependants->save();
-        }
-
-        session()->flash("alert-success", "Record Saved Successfully!");
-        return redirect()->route('people.index');
+        session()->flash("alert-success", "Taarifa zimehifadhiwa!");
+        return redirect()->route('dependants.create',$person->id);
     }
 
  
     public function show(Person $person)
     {
-        $dependants = [];
-        $relations = []; //relation of dependants
-
-        foreach ($person->dependats as $dep) {
-            array_push($dependants,$dep->dependant_id);
-            $relations['K'.$dep->dependant_id] = $dep->relation_id;
-        }
-
-        $members = Person::whereIn('id',$dependants)->get();
-        $allRelations = PersonRelations::all();
-
-        return view('people.show',compact("person","members",'relations','allRelations'));
+        return view('people.show',compact('person'));
     }
 
    
     public function edit(Person $person)
     {
-        $dependants = [];
-        $relations = []; //relation of dependants
-
-        foreach ($person->dependats as $dep) {
-            array_push($dependants,$dep->dependant_id);
-            $relations[$dep->dependant_id] = $dep->relation_id;
-        }
-
         $position = PersonPosition::all();
-        $dependants = Person::whereIn('id',$dependants)->get();
         $service = Service::all();
-        $allRelations = PersonRelations::all();
         $members = Person::select('id','name','position_id','gender')->get();
         $marriageStatus = MarriageStatus::all();
         $Community = Community::all();
 
-        return view('people.edit',compact('position','dependants','service','person','allRelations',
-                    'relations','members','marriageStatus','Community'));
+        return view('people.edit',compact('position','service','person','members','marriageStatus','Community'));
     }
 
  
@@ -120,26 +87,48 @@ class PersonController extends Controller
         $person->date_marriage = toDbDateFormat($request->date_marriage);
         $person->form_return_date = toDbDateFormat($request->form_return_date);
         $person->services = array2String($request->services);
-        $person->status = 1;
+        $person->status = 3;
         $person->updated_by = Auth::user()->id;
         $person->save();
-        
-        $dependantsIds = json_decode($request->dependant_ids,true);
-        $relationIds = json_decode($request->relation_ids,true);
-
-        for($i= 0; $i < count($dependantsIds); $i++){
-            $dependants = new PersonDependant;
-            $dependants->person_id= $person->id;
-            $dependants->dependant_id= $dependantsIds[$i];
-            $dependants->relation_id= $relationIds[$i];
-            $dependants->save();
-        }
         
         session()->flash("alert-success", "Record Updated Successfully!");
         return redirect()->route('people.index');
     }
 
- 
+    public function pending()
+    {
+        $people = person::where('status',1)->get();
+        return view('people.pending', compact("people"));
+    }
+    public function search(Request $request)
+    {
+        $people = person::where('status',$request->status)->get();
+        $request->flash('request',$request);    
+        return view('people.pending', compact("people"));
+    }
+
+    public function approve(Request $request)
+    {
+        // dd($request->all());
+        if($request->selection == 0){
+            $status = 2;
+            $msg = 'Taarifa Imekataliwa!';
+        }
+        if($request->selection == 1){
+            $status = 3;
+            $msg = 'Taarifa Imehakikiwa!';
+        }
+        
+        $person = person::find($request->person_id);
+        $person->status = $status;
+        $person->approval_note = $request->approval_note;
+        $person->approved_by = Auth::user()->id;
+        $person->approved_at = Carbon::now();
+        $person->save();
+        session()->flash("alert-success", $msg);
+        return redirect()->route('people.pending');
+    }
+
     public function destroy(Person $person)
     {
         //

@@ -43,7 +43,18 @@
                 <p>{{ __('menu.memberslist')}}</p>
               </a>
           </li>
-      
+          <li class="nav-item">
+            <a href="{{route('dependants.index')}}" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>{{ __('menu.dependants')}}</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('people.pending')}}" class="nav-link">
+                <i class="fas fa-angle-double-right"></i>
+                <p>{{ __('menu.approve')}}</p>
+              </a>
+          </li>
        
      
         </ul>
@@ -172,12 +183,7 @@
               <p>Users</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{route('users.pending')}}" class="nav-link">
-              <i class="fas fa-angle-double-right"></i>
-              <p>Approve</p>
-            </a>
-          </li>
+     
        
         </ul>
       </li>

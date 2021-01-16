@@ -109,28 +109,7 @@
                                     <input type="text" class="form-control" value="{{ $person->marriage_place }}" name="marriage_place" id="marriage_place">
                                 </div>
                             </div>
-                      <hr>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h5 class="mb-2">Wategemezi</h5>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button type="button" class="btn  btn-rounded btn-icon btn-warning float-right" 
-                                    data-toggle="modal" data-target="#addMember">Ongeza Mtegemezi
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                  <table id="dependants" class="table table-bordered table-striped">
-                            
-                                  </table>
-                                </div>
-                            </div>
-                
-                            <input type="hidden" name="dependant_ids" id="dependant_ids" >
-                            <input type="hidden" name="relation_ids" id="relation_ids">
+                  
 
 
                         </div>
@@ -440,7 +419,6 @@
 
 @push('page_scripts')
     @include('partials.notification')
-    @include('people.add_dependant')
 
 
     <script>
@@ -477,107 +455,8 @@
         });
 
 
-            
-    var members_table = $('#dependants').DataTable({
-        searching: false,
-        bPaginate: false,
-        ordering: false,
-        bInfo: false,
-        scrollY:  "300px",
-        scrollCollapse: true,
-        columns: [
-            { title: "Jina" },
-            { title: "Jinsia" },
-            { title: "Uhusiano" },
-            { title: "Ondoa", defaultContent:  '<button type="button" id="delete_btn" class="btn btn-icon btn-rounded btn-sm btn-danger"> <i class="fas fa-trash"></i></button>'},
-            
-        ]
-    });
 
-        var dependants_list = []; //hold data displayed in members table
-        var dependants_ids = []; //hold dependants ids for saving in db
-        var relations = []; //hold dependants relations
-
-        getDependants(); //display the saved dependants
-
-        //add dependat to list of dependants on click of modal form
-        $('#addItemForm').submit(function(event) {
-            event.preventDefault();
-
-            var values = {};
-            $.each($(this).serializeArray(), function(i, field) {
-                values[field.name] = field.value;
-            });
-
-            var data = []; //hold selected dependant values
-            var member_id = values.member_id;
-            var people = @json($members);
-
-            $.each(people, function(index, value) {
-                if (value.id == member_id) {
-                    data.push(value.name);
-                    data.push(value.gender);
-                    data.push($("#relation_id option:selected").text());
-                    dependants_ids.push(value.id);
-                    relations.push(parseInt(values.relation_id));
-
-                }
-            });
-
-
-            dependants_list.push(data);
-            members_table.clear();
-            members_table.rows.add(dependants_list).draw();
-            $('#dependant_ids').val(JSON.stringify(dependants_ids));
-            $('#relation_ids').val(JSON.stringify(relations));
-
-            $('#addMember').modal('hide');
-
-        });
-
-        $('#dependants tbody').on('click', '#delete_btn', function() {
-            var index = members_table.row($(this).parents('tr')).index();
-            dependants_list.splice(index, 1);
-            dependants_ids.splice(index, 1);
-            relations.splice(index, 1);
-            members_table.clear();
-            members_table.rows.add(dependants_list);
-            members_table.draw();
-            $('#dependant_ids').val(JSON.stringify(dependants_ids));
-            $('#relation_ids').val(JSON.stringify(relations));
-        });
-
-        function getDependants(){
-            var people = @json($dependants);
-
-            $.each(people, function(index, value) { 
-                var data = []; 
-                var dependantRelation = @json($relations);
-
-                data.push(value.name);
-                data.push(value.gender);
-                data.push(getRelation(dependantRelation[value.id])); 
-                relations.push(dependantRelation[value.id]);
-                dependants_ids.push(value.id);
-                dependants_list.push(data);
-            });
-           
-            members_table.clear();
-            members_table.rows.add(dependants_list).draw();
-            $('#relation_ids').val(JSON.stringify(dependants_ids));
-           
-        }
-
-        function getRelation(id){
-           var pos = '';
-            $.each(@json($allRelations), function(index, value) { 
-              if(value.id == id){
-                pos = value.name;
-              }
-            });
-            return pos;
-        }
-
+   
 
     </script>
    

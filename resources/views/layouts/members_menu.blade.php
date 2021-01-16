@@ -4,9 +4,6 @@
       <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
   
-@if (Auth::user()->status <> 0)
-    
-
 
       <li class="nav-item">
         <a href="{{route('member-home')}}" class="nav-link">
@@ -41,7 +38,7 @@
     
     </ul>
 
-    @endif
+
 
   </nav>
   <!-- /.sidebar-menu -->

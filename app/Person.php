@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Person extends Model
 {
@@ -28,7 +29,7 @@ class Person extends Model
         return $this->hasMany('App\Pledge', 'person_id','id');
     }
 
-    public function dependats()
+    public function dependants()
     {
         return $this->hasMany('App\PersonDependant', 'person_id', 'id');
     }
@@ -43,5 +44,9 @@ class Person extends Model
         return $this->belongsTo('App\Community', 'community_id','id');
     }
 
+
+    public function age($date){
+        return Carbon::createFromDate($date)->age;
+    }
 
 }

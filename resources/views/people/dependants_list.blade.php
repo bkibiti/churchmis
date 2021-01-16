@@ -52,6 +52,7 @@
                                     <th>Jinsia</th>
                                     <th>Tarehe ya Kuzaliwa</th>
                                     <th>Uhusiano</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +64,17 @@
                                         <td>{{ $p->gender }}</td>
                                         <td>{{$p->dob }}</td>
                                         <td>{{ $p->relationship->name }}</td>
-
+                                        <td>
+                                            <a href="#">
+                                               
+                                                <button class="btn btn-danger btn-rounded btn-sm"  type="button" data-toggle="modal" data-target="#delete" 
+                                                    data-id="{{$p->id}}" data-name="{{$p->name}}">
+                                                    <span class="badge badge-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
 
@@ -92,7 +103,10 @@
 
 @push('page_scripts')
     @include('partials.notification')
- 
+    @include('people.add_dependant2')
+    @include('people.delete_dependent')
+
+
     
     <script>
         $('#mydatatable').DataTable({
@@ -112,6 +126,20 @@
                 format: 'DD/MM/YYYY'
             });
         });
+
+
+         //delete 
+        $('#delete').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var user = button.data('name')
+            var modal = $(this)
+            var message =  "Una uhakika unataka kumuondoa:- ". concat(user);
+
+            modal.find('.modal-body #id').val(id)
+            modal.find('.modal-body #prompt_message').text(message)
+
+        })//end
 
     </script>
 

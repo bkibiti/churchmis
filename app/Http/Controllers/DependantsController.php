@@ -14,7 +14,10 @@ class DependantsController extends Controller
     public function index()
     {
         $dependants = PersonDependant::all();
-        return view('people.dependants_list', compact("dependants"));
+        $person = Person::select('id','name','address','mobile_phone')->get();
+        $relations = PersonRelations::all();
+
+        return view('people.dependants_list', compact("dependants",'person','relations'));
     }
 
     public function create($id)
@@ -32,8 +35,6 @@ class DependantsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $dependant = new PersonDependant;
         $dependant->name = $request->name;
         $dependant->gender = $request->gender;
@@ -50,4 +51,31 @@ class DependantsController extends Controller
         return view('people.dependants', compact("dependants",'relations','person_id','parent_name'));
     }
 
+    public function store2(Request $request)
+    {
+        $dependant = new PersonDependant;
+        $dependant->name = $request->name;
+        $dependant->gender = $request->gender;
+        $dependant->dob = toDbDateFormat($request->dob);
+        $dependant->person_id = $request->person_id;
+        $dependant->relation_id = $request->relation_id;
+        $dependant->save();
+
+        $dependants = PersonDependant::all();
+        $person = Person::select('id','name','address','mobile_phone')->get();
+        $relations = PersonRelations::all();
+
+        session()->flash("alert-success", "Taarifa zimehifadhiwa!");
+        return view('people.dependants_list', compact("dependants",'person','relations'));
+    
+    }
+    public function delete(Request $request)
+    {
+        PersonDependant::destroy($request->id);
+
+        session()->flash("alert-success", "Mtegemezi ameondolewa!");
+        return back();
+    
+    }
+    
 }

@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/dependants', 'DependantsController@index')->name('dependants.index');
         Route::get('admin/dependants/{id}', 'DependantsController@create')->name('dependants.create');
         Route::post('admin/dependants', 'DependantsController@store')->name('dependants.store');
+        Route::post('admin/dependant', 'DependantsController@store2')->name('dependants.store2');
+        Route::post('admin/dependant/delete', 'DependantsController@delete')->name('dependants.delete');
 
 
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Validator;
+use App\Person;
 
 class AuthController extends Controller
 {
@@ -59,15 +60,26 @@ class AuthController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
+        //save person profile
+        $person = new Person;
+        $person->name =  $request->name;
+        $person->email = $request->email;
+        $person->mobile_phone = $request->mobile;
+        $person->position_id = 1;
+        $person->status = 0;
+        $person->save();
+
         $user = User::create(array_merge(
                     $validator->validated(),
                     [
                         'status' => '1',          
                         'password' => Hash::make($request->password),
-                        'is_admin' => 'FALSE'
+                        'is_admin' => 'FALSE',
+                        'person_id' => $person->id
                     ]
                 ));
 
+                
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user

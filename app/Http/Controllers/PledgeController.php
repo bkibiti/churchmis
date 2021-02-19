@@ -64,7 +64,6 @@ class PledgeController extends Controller
 
     public function update(Request $request, Pledge $pledge)
     {
-
         $pledge->activity_id = $request->activity_id;
         $pledge->person_id = $request->person_id;
         $pledge->pledge_date = toDbDateFormat($request->pledge_date);

@@ -23,9 +23,9 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <img src="{{ asset('dist/img/logo_trans.png') }}" width="50" height="50"> 
+    <img src="{{ asset('dist/img/logo_trans.png') }}" width="50" height="50">
     <br>
-    <a href="{{ route('public-home') }}"><b>Smart</b>Church</a> 
+    {{-- <a href="{{ route('public-home') }}"><b>Smart</b>Church</a>  --}}
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -48,7 +48,7 @@
               <span class="fas fa-envelope"></span>
             </div>
           </div>
-         
+
         </div>
         <div class="input-group mb-3">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
@@ -72,7 +72,7 @@
                 Remember Me
               </label>
 
-             
+
             </div>
           </div>
           <!-- /.col -->
@@ -89,11 +89,11 @@
             </a>
         @endif
         <br>
-   
+
             <a href="{{ route('register') }}">
                 {{ __('Register a new membership') }}
             </a>
-     
+
     </div>
     <!-- /.login-card-body -->
   </div>

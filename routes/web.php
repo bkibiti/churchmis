@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'PublicController@index')->name('public-home');
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+// Route::get('/', 'PublicController@index')->name('public-home');
 
 Auth::routes();
 
@@ -39,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::middleware(['is_admin'])->group(function () {
-         
+
         Route::get('admin/dashboard', 'HomeController@index')->name('home');
 
         //Person controller
@@ -47,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin/people/approve', 'PersonController@approve')->name('people.approve');
         Route::post('admin/people/search', 'PersonController@search')->name('people.search');
         Route::resource('admin/people', 'PersonController');
-        
+
         //dependats
         Route::get('admin/dependants', 'DependantsController@index')->name('dependants.index');
         Route::get('admin/dependants/{id}', 'DependantsController@create')->name('dependants.create');
@@ -57,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-        
+
         // Route::resource('admin/family', 'FamilyController');
 
         Route::resource('admin/services', 'ServiceController');
@@ -89,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/user-roles/{id}/edit', 'RoleController@edit')->name('roles.edit');
         Route::post('admin/user-roles/update', 'RoleController@update')->name('roles.update');
         Route::delete('admin/user-roles/delete', 'RoleController@destroy')->name("roles.destroy");
-        
+
         //users routes
         Route::get('admin/users', 'UserController@index')->name('users.index');
         Route::post('admin/users/register', 'UserController@store')->name("users.store");
@@ -102,7 +103,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/users/search', 'UserController@search')->name("users.search");
         Route::post('admin/users/user-role-id', 'UserController@getRoleID')->name('getRoleID');
      });
-  
+
 
 
 });

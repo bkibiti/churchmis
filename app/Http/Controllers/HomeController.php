@@ -22,15 +22,17 @@ class HomeController extends Controller
     public function index()
     {
         $personCount = Person::groupBy('gender')->selectRaw('gender,count(*) as count')->orderBy('gender')->get();
-        
+
         $groupCount = Service::count();
         $upcoming = Event::whereDate('start', '>', Carbon::now())->count();
         $ongoing = Event::whereDate('start', '<', Carbon::now())->whereDate('end', '>', Carbon::now())->count();
         $event = $upcoming + $ongoing;
 
-        $classification = DB::select("SELECT cl.name,count(persons.id) total FROM persons 
-        JOIN person_position cl ON cl.id = position_id
-        GROUP BY position_id");
+        $classification = DB::select("SELECT pp.name,count(persons.id) total
+            FROM persons
+            JOIN person_position pp ON pp.id = position_id
+            GROUP BY pp.name"
+        );
 
         $dependants = DB::select("SELECT gender,count(gender) total FROM person_dependants
         GROUP BY gender ORDER BY gender");

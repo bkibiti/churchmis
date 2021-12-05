@@ -34,6 +34,7 @@ class LoginController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -42,16 +43,15 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        
+
         if(auth()->user()->is_admin === 'TRUE')
         {
-            return redirect()->route('home');   
+            return redirect()->route('home');
         }
         if(auth()->user()->is_admin === 'FALSE')
         {
             return redirect()->route('member-home');
         }
-      
 
     }
 
